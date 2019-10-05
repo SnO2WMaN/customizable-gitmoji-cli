@@ -29,8 +29,11 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          name: Lint
+          command: npm run lint
+      - run:
           name: Test
-          command: npm test
+          command: npm run test
 
 workflows:
   version: 2
