@@ -1,0 +1,33 @@
+version: 2.1
+
+executors:
+  node-lts:
+    docker:
+      - image: circleci/node:lts
+
+jobs:
+  install:
+    executor: node-lts
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependency-cache-{{ checksum "package-lock.json" }}
+            - dependency-cache-
+      - run: npm ci
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+  test:
+    executor: node-lts
+    steps:
+      - checkout
+      - run: npm test
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - install
+      - test
