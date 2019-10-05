@@ -2,6 +2,7 @@ version: 2.1
 
 executors:
   node-lts:
+    working_directory: ~
     docker:
       - image: circleci/node:lts
 
@@ -11,19 +12,25 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys:
-            - dependency-cache-{{ checksum "package-lock.json" }}
-            - dependency-cache-
+          key: dependency-cache-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run: npm ci
       - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          key: dependency-cache-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - persist_to_workspace:
+          root: .
           paths:
             - node_modules
   test:
     executor: node-lts
     steps:
       - checkout
-      - run: npm test
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test
+          command: npm test
 
 workflows:
   version: 2
