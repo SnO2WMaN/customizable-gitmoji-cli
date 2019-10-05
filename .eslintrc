@@ -1,6 +1,9 @@
 {
   "root": true,
-  "extends": ["@conten2/eslint-config"],
+  "extends": ["@conten2/eslint-config", "@conten2/eslint-config/+typescript"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
   "rules": {
     "no-shadow": 1,
     "no-underscore-dangle": 0,

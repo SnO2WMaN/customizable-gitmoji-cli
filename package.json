@@ -10,7 +10,7 @@
   },
   "scripts": {
     "fmt": "prettier **/*.{js,json,yml,md} --write",
-    "lint": "eslint src cli.js --ext .js --fix",
+    "lint": "eslint src-beta --ext .ts,.js --fix",
     "test": "jest"
   },
   "repository": {
@@ -50,6 +50,8 @@
     "husky": "^3.0.8",
     "jest": "^24.0.0",
     "lint-staged": "^9.4.1",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
   }
 }
