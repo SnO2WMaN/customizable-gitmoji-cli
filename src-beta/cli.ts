@@ -1,11 +1,13 @@
 import cac from 'cac'
 import packageJson from '../package.json'
 
-import list from './list'
+import list from './commands/list'
+import search from './commands/search'
 
 const cli = cac(packageJson.name)
 
 cli.command('list', 'List all the available gitmojis').action(list)
+cli.command('search [query]', 'Search gitmojis').action(search)
 
 /*
 cli.command('commit', 'Interactively commit using the prompts').action(list)
@@ -17,10 +19,6 @@ cli.command('init', 'Initialize gitmoji as a commit hook').action(list)
 cli
   .command('remove', 'Remove a previously initialized commit hook')
   .action(list)
-*/
-
-/*
-cli.command('search', 'Search gitmojis').action(list)
 */
 
 cli.version(packageJson.version)
