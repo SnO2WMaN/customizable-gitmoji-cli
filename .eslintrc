@@ -1,0 +1,9 @@
+{
+  "root": true,
+  "extends": ["@conten2/eslint-config"],
+  "rules": {
+    "no-shadow": 1,
+    "no-underscore-dangle": 0,
+    "consistent-return": 0
+  }
+}
