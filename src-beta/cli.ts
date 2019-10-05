@@ -1,23 +1,29 @@
-import chalk from 'chalk'
+import cac from 'cac'
+import packageJson from '../package.json'
 
-import gitmojis from './gitmojis'
+import list from './list'
 
-function list() {
-  const longest = gitmojis
-    .map(({ code }) => code.length)
-    .reduce((acc, cur) => Math.max(acc, cur))
-  gitmojis.forEach(({ emoji, code, description }) => {
-    console.log(
-      [
-        emoji,
-        ' - ',
-        chalk.blue(code),
-        ''.padStart(longest - code.length + 1, ' '),
-        '│ ',
-        description
-      ].join('')
-    )
-  })
-}
+const cli = cac(packageJson.name)
 
-list()
+cli.command('list', 'List all the available gitmojis').action(list)
+
+/*
+cli.command('commit', 'Interactively commit using the prompts').action(list)
+cli.command('config', 'Setup gitmoji-cli preferences').action(list)
+*/
+
+/*
+cli.command('init', 'Initialize gitmoji as a commit hook').action(list)
+cli
+  .command('remove', 'Remove a previously initialized commit hook')
+  .action(list)
+*/
+
+/*
+cli.command('search', 'Search gitmojis').action(list)
+*/
+
+cli.version(packageJson.version)
+cli.help()
+
+cli.parse()

@@ -31,6 +31,7 @@
   "homepage": "https://github.com/SnO2WMaN/gitmoji-cli#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "cac": "^6.5.3",
     "chalk": "^2.4.1",
     "conf": "^2.0.0",
     "execa": "^1.0.0",
