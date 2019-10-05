@@ -33,7 +33,6 @@ class GitmojiCli {
     if (!this._isAGitRepo()) {
       return this._errorMessage('Not a git repository - @init')
     }
-
     execa('git', ['rev-parse', '--absolute-git-dir'])
       .then(result => {
         fs.writeFile(
@@ -146,7 +145,7 @@ class GitmojiCli {
     if (config.getAutoAdd()) {
       execa
         .stdout('git', ['add', '.'])
-        .then(res => execa.shell(commit))
+        .then(() => execa.shell(commit))
         .then(res => console.log(chalk.blue(res.stdout)))
         .catch(err => this._errorMessage(err.stderr ? err.stderr : err.stdout))
     } else {
@@ -160,9 +159,9 @@ class GitmojiCli {
 
   _parseGitmojis(gitmojis) {
     return gitmojis.map(gitmoji => {
-      const emoji = gitmoji.emoji
-      const code = gitmoji.code
-      const description = gitmoji.description
+      const { emoji } = gitmoji
+      const { code } = gitmoji
+      const { description } = gitmoji
       return console.log(`${emoji} - ${chalk.blue(code)} - ${description}`)
     })
   }

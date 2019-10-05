@@ -1,6 +1,7 @@
 const Conf = require('conf')
 
 const constants = require('./constants')
+
 const config = new Conf()
 
 const getAutoAdd = () => config.get(constants.AUTO_ADD)
