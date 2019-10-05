@@ -1,0 +1,3 @@
+[submodule "gitmoji"]
+	path = gitmoji
+	url = git@github.com:carloscuesta/gitmoji.git
