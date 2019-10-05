@@ -30,4 +30,6 @@ workflows:
   test:
     jobs:
       - install
-      - test
+      - test:
+          requires:
+            - install
