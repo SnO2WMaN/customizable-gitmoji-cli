@@ -1,0 +1,6 @@
+{
+  "*.md": ["prettier --write", "git add"],
+  "*.json": ["prettier --write", "git add"],
+  "*.js": ["prettier --write", "git add"],
+  "*.yml": ["prettier --write", "git add"]
+}
