@@ -6,6 +6,6 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "outDir": "lib",
-    "rootDirs": ["src-beta", "gitmoji"]
+    "rootDirs": ["src", "gitmoji"]
   }
 }
