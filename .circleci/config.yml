@@ -26,6 +26,9 @@ jobs:
     executor: node-lts
     steps:
       - checkout
+      - run: |
+          git submodule sync
+          git submodule update --init
       - attach_workspace:
           at: .
       - run:
