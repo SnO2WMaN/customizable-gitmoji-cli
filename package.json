@@ -31,17 +31,12 @@
   },
   "homepage": "https://github.com/SnO2WMaN/gitmoji-cli#readme",
   "dependencies": {
-    "axios": "^0.18.0",
     "cac": "^6.5.3",
     "chalk": "^2.4.1",
     "conf": "^6.1.0",
     "consola": "^2.10.1",
-    "execa": "^1.0.0",
     "inquirer": "^6.0.0",
     "inquirer-autocomplete-prompt": "^1.0.1",
-    "meow": "^5.0.0",
-    "parent-dirs": "^1.0.0",
-    "path-exists": "^3.0.0",
     "simple-git": "^1.126.0",
     "update-notifier": "^3.0.1"
   },
