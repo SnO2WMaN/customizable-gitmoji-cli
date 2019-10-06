@@ -6,10 +6,10 @@
     "node": ">=10"
   },
   "bin": {
-    "gitmoji": "cli.js"
+    "gitmoji": "lib/cli.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rollup -c",
     "fmt": "prettier **/*.{js,json,yml,md} --write",
     "lint": "eslint src-beta --ext .ts,.js --fix",
     "test": "jest"
@@ -52,6 +52,10 @@
     "jest": "^24.0.0",
     "lint-staged": "^9.4.1",
     "prettier": "^1.18.2",
+    "rollup": "^1.23.1",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-typescript2": "^0.24.3",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.3"
   }
