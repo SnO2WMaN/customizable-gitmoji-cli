@@ -1,5 +1,13 @@
 import chalk from 'chalk'
 
+type Gitmoji = {
+  emoji: string
+  entity?: string // fix later
+  code: string
+  description: string
+  name: string
+}
+
 function parse(
   { emoji, code, description }: Gitmoji,
   longest: number,
@@ -17,7 +25,7 @@ function parse(
 }
 
 export default function(
-  gitmojis: Gitmoji[],
+  gitmojis?: Gitmoji[],
   process?: (line: string) => string
 ) {
   if (!gitmojis || gitmojis.length <= 0) return false

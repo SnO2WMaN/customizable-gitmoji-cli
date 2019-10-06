@@ -30,10 +30,11 @@
   },
   "homepage": "https://github.com/SnO2WMaN/gitmoji-cli#readme",
   "dependencies": {
+    "@types/inquirer": "^6.5.0",
     "axios": "^0.18.0",
     "cac": "^6.5.3",
     "chalk": "^2.4.1",
-    "conf": "^2.0.0",
+    "conf": "^6.1.0",
     "execa": "^1.0.0",
     "inquirer": "^6.0.0",
     "inquirer-autocomplete-prompt": "^1.0.1",
