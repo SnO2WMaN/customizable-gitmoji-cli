@@ -6,11 +6,20 @@ executors:
     docker:
       - image: circleci/node:lts
 
+commands:
+  checkout-with-submodule:
+    description: Checkout and Clone git submodule
+    steps:
+      - checkout
+      - run: |
+          git submodule sync
+          git submodule update --init
+
 jobs:
   install:
     executor: node-lts
     steps:
-      - checkout
+      - checkout-with-submodule
       - restore_cache:
           key: dependency-cache-{{ .Branch }}-{{ checksum "package-lock.json" }}
       - run: npm ci
@@ -25,10 +34,7 @@ jobs:
   build:
     executor: node-lts
     steps:
-      - checkout
-      - run: |
-          git submodule sync
-          git submodule update --init
+      - checkout-with-submodule
       - attach_workspace:
           at: .
       - run:
@@ -41,7 +47,7 @@ jobs:
   test:
     executor: node-lts
     steps:
-      - checkout
+      - checkout-with-submodule
       - attach_workspace:
           at: .
       - run:
