@@ -34,6 +34,7 @@ export default function(
     .map(({ code }) => code.length)
     .reduce((acc, cur) => Math.max(acc, cur))
   gitmojis.forEach(gitmoji => {
+    // eslint-disable-next-line no-console
     console.log(parse(gitmoji, longest, process))
   })
 

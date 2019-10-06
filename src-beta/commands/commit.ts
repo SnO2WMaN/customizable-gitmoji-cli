@@ -68,7 +68,11 @@ export default async function() {
       answer.message
     ])
     consola.success('Commit success!')
-    consola.info(await git.show([commit, '--shortstat', '--pretty="%an %s"']))
+    ;(await git.show([commit, '--shortstat', '--pretty=%an | %s']))
+      .split('\n')
+      .forEach(line => {
+        consola.info(line)
+      })
   } catch (e) {
     consola.error('Commit failed!')
     consola.error(e)
