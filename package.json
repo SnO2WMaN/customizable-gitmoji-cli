@@ -9,6 +9,7 @@
     "gitmoji": "cli.js"
   },
   "scripts": {
+    "build": "tsc",
     "fmt": "prettier **/*.{js,json,yml,md} --write",
     "lint": "eslint src-beta --ext .ts,.js --fix",
     "test": "jest"
