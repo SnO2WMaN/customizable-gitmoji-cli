@@ -1,4 +1,8 @@
 import cac from 'cac'
+
+import chalk from 'chalk'
+import consola from 'consola'
+
 import packageJson from '../package.json'
 
 import commit from './commands/commit'

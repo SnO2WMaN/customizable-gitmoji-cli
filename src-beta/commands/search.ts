@@ -1,4 +1,5 @@
 import chalk from 'chalk'
+import consola from 'consola'
 
 import gitmojis from '../gitmojis'
 import parseLine from '../parseLine'
@@ -21,5 +22,5 @@ export default function(query?: string) {
       }
     )
   )
-    console.log(`${chalk.red`🚨 No gitmoji is found query`} ${query}`)
+    consola.error(`No gitmoji is found query "${query}"`)
 }
