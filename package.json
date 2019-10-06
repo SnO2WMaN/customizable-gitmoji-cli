@@ -31,7 +31,6 @@
   },
   "homepage": "https://github.com/SnO2WMaN/gitmoji-cli#readme",
   "dependencies": {
-    "@types/inquirer": "^6.5.0",
     "axios": "^0.18.0",
     "cac": "^6.5.3",
     "chalk": "^2.4.1",
@@ -44,12 +43,14 @@
     "parent-dirs": "^1.0.0",
     "path-exists": "^3.0.0",
     "simple-git": "^1.126.0",
-    "update-notifier": "^2.3.0"
+    "update-notifier": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@conten2/eslint-config": "^1.2.0",
     "@conten2/prettier-config": "^1.0.0",
+    "@types/inquirer": "^6.5.0",
+    "@types/update-notifier": "^2.5.0",
     "eslint": "^6.5.1",
     "eslint-plugin-import": "^2.18.2",
     "husky": "^3.0.8",
