@@ -11,7 +11,7 @@
   "scripts": {
     "build": "rollup -c",
     "fmt": "prettier **/*.{js,json,yml,md} --write",
-    "lint": "eslint src-beta --ext .ts,.js --fix",
+    "lint": "eslint src --ext .ts --fix",
     "test": "jest"
   },
   "repository": {
