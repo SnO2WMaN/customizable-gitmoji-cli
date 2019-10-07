@@ -1,6 +1,11 @@
 {
   "*.md": ["prettier --write", "git add"],
-  "*.json": ["prettier --write", "git add"],
+  "package.json": [
+    "prettier-package-json --write",
+    "prettier --write",
+    "git add"
+  ],
+  "*[!package].json": ["prettier --write", "git add"],
   "*.{js,ts}": ["eslint --fix", "prettier --write", "git add"],
   "*.yml": ["prettier --write", "git add"]
 }

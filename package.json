@@ -1,35 +1,24 @@
 {
+  "private": true,
   "name": "gitmoji-cli",
-  "version": "2.0.0",
   "description": "A gitmoji client for using emojis on commit messages.",
-  "engines": {
-    "node": ">=10"
+  "license": "MIT",
+  "author": "Carlos Cuesta",
+  "homepage": "https://github.com/SnO2WMaN/customizable-gitmoji-cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SnO2WMaN/customizable-gitmoji-cli.git"
   },
+  "bugs": {
+    "url": "https://github.com/SnO2WMaN/customizable-gitmoji-cli/issues"
+  },
+  "version": "2.0.0",
   "bin": {
     "gitmoji": "lib/cli.js"
   },
-  "scripts": {
-    "build": "rollup -c",
-    "fmt": "prettier **/*.{js,json,yml,md} --write",
-    "lint": "eslint src --ext .ts --fix",
-    "test": "echo 'skip'"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SnO2WMaN/gitmoji-cli.git"
-  },
-  "keywords": [
-    "gitmoji",
-    "emoji",
-    "carloscuesta",
-    "commit"
+  "files": [
+    "lib/cli.js"
   ],
-  "author": "Carlos Cuesta",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/SnO2WMaN/gitmoji-cli/issues"
-  },
-  "homepage": "https://github.com/SnO2WMaN/gitmoji-cli#readme",
   "dependencies": {
     "cac": "^6.5.3",
     "chalk": "^2.4.1",
@@ -44,6 +33,7 @@
     "@babel/core": "^7.6.2",
     "@conten2/eslint-config": "^1.2.0",
     "@conten2/prettier-config": "^1.0.0",
+    "@sno2wman/prettier-package-json": "^2.0.2",
     "@types/inquirer": "^6.5.0",
     "@types/update-notifier": "^2.5.0",
     "eslint": "^6.5.1",
@@ -58,5 +48,22 @@
     "rollup-plugin-typescript2": "^0.24.3",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.3"
+  },
+  "keywords": [
+    "commit",
+    "emoji",
+    "gitmoji"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "fmt": "prettier **/*.{js,json,yml,md} --write",
+    "lint": "eslint src --ext .ts --fix",
+    "test": "echo 'skip'"
   }
 }
