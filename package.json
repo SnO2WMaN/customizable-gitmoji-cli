@@ -63,7 +63,7 @@
   "scripts": {
     "build": "rollup -c",
     "fmt": "prettier **/*.{js,json,yml,md} --write",
-    "lint": "eslint src --ext .ts --fix",
+    "lint": "eslint src . --ext .js,.ts --fix",
     "test": "echo 'skip'"
   }
 }

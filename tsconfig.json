@@ -3,10 +3,12 @@
     "target": "es6",
     "module": "esnext",
     "strict": true,
+    "allowJs": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "outDir": "lib",
+    "baseUrl": ".",
     "rootDirs": ["src", "gitmoji"]
   }
 }

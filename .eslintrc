@@ -1,14 +1,21 @@
 {
   "root": true,
-  "extends": ["@conten2/eslint-config", "@conten2/eslint-config/+typescript"],
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
+  "extends": ["@conten2/eslint-config"],
   "rules": {
     "no-shadow": 1,
     "no-underscore-dangle": 0,
-    "consistent-return": 0,
-
-    "@typescript-eslint/explicit-function-return-type": 0
-  }
+    "consistent-return": 0
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "extends": ["@conten2/eslint-config/+typescript"],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": 0
+      }
+    }
+  ]
 }
