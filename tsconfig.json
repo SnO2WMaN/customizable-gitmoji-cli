@@ -9,6 +9,10 @@
     "resolveJsonModule": true,
     "outDir": "lib",
     "baseUrl": ".",
-    "rootDirs": ["src", "gitmoji"]
-  }
+    "paths": {
+      "~/*": ["src/*"],
+      "~~/*": ["*"]
+    }
+  },
+  "include": ["src/**/*.ts", "tests/**/*.test.ts"]
 }

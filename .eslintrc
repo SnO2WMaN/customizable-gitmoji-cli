@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": ["@conten2/eslint-config"],
+  "extends": ["@conten2/eslint-config", "plugin:jest/recommended"],
   "rules": {
     "no-shadow": 1,
     "no-underscore-dangle": 0,
