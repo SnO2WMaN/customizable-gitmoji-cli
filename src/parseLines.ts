@@ -8,10 +8,9 @@ type Gitmoji = {
   name: string
 }
 
-function parse(
+export function parseLine(
   { emoji, code, description }: Gitmoji,
-  longest: number,
-  process?: (line: string) => string
+  longest: number
 ) {
   const line = [
     emoji,
@@ -21,13 +20,10 @@ function parse(
     '│ ',
     description
   ].join('')
-  return process ? process(line) : line
+  return line
 }
 
-export default function(
-  gitmojis?: Gitmoji[],
-  process?: (line: string) => string
-) {
+export default function(gitmojis?: Gitmoji[]) {
   if (!gitmojis || gitmojis.length <= 0) return false
 
   const longest = gitmojis
@@ -35,7 +31,7 @@ export default function(
     .reduce((acc, cur) => Math.max(acc, cur))
   gitmojis.forEach(gitmoji => {
     // eslint-disable-next-line no-console
-    console.log(parse(gitmoji, longest, process))
+    console.log(parseLine(gitmoji, longest))
   })
 
   return true

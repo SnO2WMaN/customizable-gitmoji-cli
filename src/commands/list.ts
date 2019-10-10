@@ -1,7 +1,7 @@
 import gitmojis from '../gitmojis'
 
-import parseLine from '../parseLine'
+import parseLines from '../parseLines'
 
 export default function() {
-  parseLine(gitmojis)
+  parseLines(gitmojis)
 }
