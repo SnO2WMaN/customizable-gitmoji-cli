@@ -9,7 +9,7 @@
   "overrides": [
     {
       "files": ["**/*.ts"],
-      "extends": ["@conten2/eslint-config/+typescript"],
+      "extends": ["@conten2/eslint-config-typescript"],
       "parserOptions": {
         "project": "./tsconfig.json"
       },
