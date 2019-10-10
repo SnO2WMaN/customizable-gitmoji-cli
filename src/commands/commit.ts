@@ -3,7 +3,7 @@ import chalk from 'chalk'
 import SimpleGit from 'simple-git/promise'
 import consola from 'consola'
 
-import { getConfig, ConfigKeys } from './config'
+import { getConfig, ConfigKeys } from '../config'
 import gitmojis from '../gitmojis'
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
@@ -16,8 +16,6 @@ export default async function() {
     consola.error('No staged files!')
     return
   }
-
-  const config = getConfig()
 
   const answer = await inquirer.prompt([
     {
@@ -37,7 +35,7 @@ export default async function() {
             })
             .map(gitmoji => ({
               name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-              value: gitmoji[config[ConfigKeys.EMOJI_FORMAT]]
+              value: gitmoji[getConfig(ConfigKeys.EMOJI_FORMAT)]
             }))
         )
       }
@@ -50,7 +48,7 @@ export default async function() {
           ? chalk.red('Enter a valid commit title')
           : true,
       transformer: input =>
-        `[${input.length}/${config[ConfigKeys.TITLE_MAX_LENGTH]}]: ${input}`
+        `[${input.length}/${getConfig(ConfigKeys.TITLE_MAX_LENGTH)}]: ${input}`
     },
     {
       name: 'message',
@@ -60,7 +58,7 @@ export default async function() {
     }
   ])
 
-  if (config[ConfigKeys.AUTO_ADD]) await git.add('.')
+  if (getConfig(ConfigKeys.AUTO_ADD)) await git.add('.')
 
   try {
     const { commit } = await git.commit([
