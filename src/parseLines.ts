@@ -1,13 +1,5 @@
 import chalk from 'chalk'
 
-type Gitmoji = {
-  emoji: string
-  entity?: string // fix later
-  code: string
-  description: string
-  name: string
-}
-
 export function parseLine(
   { emoji, code, description }: Gitmoji,
   longest: number
@@ -29,10 +21,5 @@ export default function(gitmojis?: Gitmoji[]) {
   const longest = gitmojis
     .map(({ code }) => code.length)
     .reduce((acc, cur) => Math.max(acc, cur))
-  gitmojis.forEach(gitmoji => {
-    // eslint-disable-next-line no-console
-    console.log(parseLine(gitmoji, longest))
-  })
-
-  return true
+  return gitmojis.map(gitmoji => parseLine(gitmoji, longest))
 }
