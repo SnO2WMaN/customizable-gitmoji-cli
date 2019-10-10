@@ -39,6 +39,7 @@
     "@types/jest": "^24.0.18",
     "@types/update-notifier": "^2.5.0",
     "add": "^2.0.6",
+    "codecov": "^3.6.1",
     "eslint": "^6.5.1",
     "eslint-plugin-jest": "^22.17.0",
     "husky": "^3.0.8",
@@ -68,6 +69,7 @@
     "build": "rollup -c",
     "fmt": "prettier **/*.{js,json,yml,md} --write",
     "lint": "eslint src . --ext .js,.ts --fix",
-    "test": "jest"
+    "test": "jest",
+    "codecov": "codecov"
   }
 }
