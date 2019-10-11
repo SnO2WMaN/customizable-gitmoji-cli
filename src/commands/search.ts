@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import consola from 'consola'
 
-import gitmojis from '../gitmojis'
+import getGitmojis from '../getGitmojis'
 import parseLines from '../parseLines'
 
 export function search(array: Gitmoji[], query?: string) {
@@ -23,6 +23,6 @@ export function search(array: Gitmoji[], query?: string) {
   return false
 }
 
-export default function(query?: string) {
-  search(gitmojis, query)
+export default async function(query?: string) {
+  search(await getGitmojis(), query)
 }

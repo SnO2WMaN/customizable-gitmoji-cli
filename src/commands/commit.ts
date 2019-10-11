@@ -4,7 +4,7 @@ import SimpleGit from 'simple-git/promise'
 import consola from 'consola'
 
 import { getConfig, ConfigKeys } from '../config'
-import gitmojis from '../gitmojis'
+import getGitmojis from '../getGitmojis'
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
@@ -12,6 +12,8 @@ inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 const git = SimpleGit()
 
 export default async function() {
+  const gitmojis = await getGitmojis()
+
   if ((await git.diff(['--name-only', '--cached'])).split('\n').length <= 1) {
     consola.error('No staged files!')
     return

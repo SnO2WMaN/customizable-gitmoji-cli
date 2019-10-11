@@ -1,4 +1,4 @@
-import gitmojis from '../gitmojis'
+import getGitmojis from '../getGitmojis'
 
 import parseLines from '../parseLines'
 
@@ -8,6 +8,6 @@ export function list(array: Gitmoji[]) {
   if (lines) lines.forEach(line => console.log(line))
 }
 
-export default function() {
-  list(gitmojis)
+export default async function() {
+  list(await getGitmojis())
 }
