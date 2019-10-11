@@ -1,5 +1,7 @@
-import json from '../gitmoji/src/data/gitmojis.json'
+/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires */
 
-const { gitmojis } = json
+const base = require('gitmoji-preset-base')
 
-export default gitmojis
+export default base
+
+/* eslint-enable */
