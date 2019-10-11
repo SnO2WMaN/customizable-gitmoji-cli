@@ -20,6 +20,6 @@ export default function(gitmojis?: Gitmoji[]) {
 
   const longest = gitmojis
     .map(({ code }) => code.length)
-    .reduce((acc, cur) => Math.max(acc, cur))
+    .reduce((accumulator, current) => Math.max(accumulator, current))
   return gitmojis.map(gitmoji => parseLine(gitmoji, longest))
 }

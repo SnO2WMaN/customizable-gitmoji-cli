@@ -71,8 +71,8 @@ export default async function() {
       .forEach(line => {
         consola.info(line)
       })
-  } catch (e) {
+  } catch (error) {
     consola.error('Commit failed!')
-    consola.error(e)
+    consola.error(error)
   }
 }
