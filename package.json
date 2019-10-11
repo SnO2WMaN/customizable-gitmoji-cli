@@ -24,7 +24,7 @@
     "chalk": "^2.4.1",
     "conf": "^6.1.0",
     "consola": "^2.10.1",
-    "inquirer": "^6.0.0",
+    "inquirer": "^7.0.0",
     "inquirer-autocomplete-prompt": "^1.0.1",
     "simple-git": "^1.126.0",
     "update-notifier": "^3.0.1"
