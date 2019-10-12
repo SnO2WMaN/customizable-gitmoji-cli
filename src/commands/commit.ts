@@ -10,18 +10,8 @@ import getGitmojis from '../getGitmojis'
 // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 
-async function isNoStaged() {
-  const { stdout } = await execa('git', ['diff', '--name-only', '--cached'])
-  return stdout.split('\n').length - 1 < 1
-}
-
 export default async function(hook?: boolean) {
   const gitmojis = await getGitmojis()
-
-  if (await isNoStaged()) {
-    consola.error('No staged files!')
-    return
-  }
 
   const emojiFormat = await getConfig(ConfigKeys.EMOJI_FORMAT)
   const titleMaxLength = await getConfig(ConfigKeys.TITLE_MAX_LENGTH)
