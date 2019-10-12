@@ -10,14 +10,6 @@ exports[`commands list should match for list 4`] = `"✨ - [34m:sparkles:[39m 
 
 exports[`commands search should match for correct query 1`] = `undefined`;
 
-exports[`config module should match for AUTO ADD 1`] = `true`;
-
-exports[`config module should match for EMOJI FORMAT 1`] = `"emoji"`;
-
-exports[`config module should match for SIGNED COMMIT 1`] = `false`;
-
-exports[`config module should match for TITLE MAX LENGTH 1`] = `48`;
-
 exports[`get gitmojis have config should have ordered rules 1`] = `
 Array [
   Object {

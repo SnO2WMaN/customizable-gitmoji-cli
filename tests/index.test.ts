@@ -1,6 +1,6 @@
 import consola from 'consola'
 
-import { getConfig, setConfig, ConfigKeys } from '~/config'
+import { getConfig, ConfigKeys } from '~/config'
 import { parseLine } from '~/parseLines'
 import { getFromConfig } from '~/getGitmojis'
 
@@ -8,28 +8,6 @@ import { list } from '~/commands/list'
 import { search } from '~/commands/search'
 
 consola.mockTypes(() => jest.fn)
-
-describe('config module', () => {
-  it('should match for AUTO ADD', async () => {
-    setConfig(ConfigKeys.AUTO_ADD, true)
-    expect(await getConfig(ConfigKeys.AUTO_ADD)).toMatchSnapshot()
-  })
-
-  it('should match for EMOJI FORMAT', async () => {
-    setConfig(ConfigKeys.EMOJI_FORMAT, 'emoji')
-    expect(await getConfig(ConfigKeys.EMOJI_FORMAT)).toMatchSnapshot()
-  })
-
-  it('should match for SIGNED COMMIT', async () => {
-    setConfig(ConfigKeys.SIGNED_COMMIT, false)
-    expect(await getConfig(ConfigKeys.SIGNED_COMMIT)).toMatchSnapshot()
-  })
-
-  it('should match for TITLE MAX LENGTH', async () => {
-    setConfig(ConfigKeys.TITLE_MAX_LENGTH, 48)
-    expect(await getConfig(ConfigKeys.TITLE_MAX_LENGTH)).toMatchSnapshot()
-  })
-})
 
 const gitmojis = [
   {
