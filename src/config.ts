@@ -1,8 +1,4 @@
-import Conf from 'conf'
-
 import explorer from './configExplorer'
-
-const config = new Conf()
 
 export enum ConfigKeys {
   AUTO_ADD = 'autoAdd',
@@ -63,7 +59,7 @@ export async function getConfig<T extends ConfigKeys>(
           )
         )
   }
-  return config.get(key, defaults[key])
+  return new Promise(() => defaults[key])
 }
 
 export async function getConfigs(): Promise<Config> {
@@ -73,8 +69,4 @@ export async function getConfigs(): Promise<Config> {
     [ConfigKeys.SIGNED_COMMIT]: await getConfig(ConfigKeys.SIGNED_COMMIT),
     [ConfigKeys.TITLE_MAX_LENGTH]: await getConfig(ConfigKeys.TITLE_MAX_LENGTH)
   }
-}
-
-export function setConfig<T extends ConfigKeys>(key: T, value: Config[T]) {
-  config.set(key, value)
 }

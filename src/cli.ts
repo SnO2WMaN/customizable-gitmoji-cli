@@ -6,7 +6,6 @@ import pkg from '../package.json'
 import commit from './commands/commit'
 import list from './commands/list'
 import search from './commands/search'
-import config, { list as listConfigs } from './commands/config'
 import init from './commands/init'
 import remove from './commands/remove'
 
@@ -16,14 +15,6 @@ const cli = cac(pkg.name)
 
 cli.command('list', 'List all the available gitmojis').action(list)
 cli.command('search [query]', 'Search gitmojis').action(search)
-
-cli
-  .command('config', 'Setup gitmoji-cli preferences')
-  .option('-l, --list', 'List config')
-  .action(async options => {
-    if (options.list) await listConfigs()
-    else await config()
-  })
 
 cli
   .command('commit', 'Interactively commit using the prompts')
