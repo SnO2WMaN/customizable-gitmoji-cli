@@ -10,24 +10,24 @@ import { search } from '~/commands/search'
 consola.mockTypes(() => jest.fn)
 
 describe('config module', () => {
-  it('should match for AUTO ADD', () => {
+  it('should match for AUTO ADD', async () => {
     setConfig(ConfigKeys.AUTO_ADD, true)
-    expect(getConfig(ConfigKeys.AUTO_ADD)).toMatchSnapshot()
+    expect(await getConfig(ConfigKeys.AUTO_ADD)).toMatchSnapshot()
   })
 
-  it('should match for EMOJI FORMAT', () => {
+  it('should match for EMOJI FORMAT', async () => {
     setConfig(ConfigKeys.EMOJI_FORMAT, 'emoji')
-    expect(getConfig(ConfigKeys.EMOJI_FORMAT)).toMatchSnapshot()
+    expect(await getConfig(ConfigKeys.EMOJI_FORMAT)).toMatchSnapshot()
   })
 
-  it('should match for SIGNED COMMIT', () => {
+  it('should match for SIGNED COMMIT', async () => {
     setConfig(ConfigKeys.SIGNED_COMMIT, false)
-    expect(getConfig(ConfigKeys.SIGNED_COMMIT)).toMatchSnapshot()
+    expect(await getConfig(ConfigKeys.SIGNED_COMMIT)).toMatchSnapshot()
   })
 
-  it('should match for TITLE MAX LENGTH', () => {
+  it('should match for TITLE MAX LENGTH', async () => {
     setConfig(ConfigKeys.TITLE_MAX_LENGTH, 48)
-    expect(getConfig(ConfigKeys.TITLE_MAX_LENGTH)).toMatchSnapshot()
+    expect(await getConfig(ConfigKeys.TITLE_MAX_LENGTH)).toMatchSnapshot()
   })
 })
 
