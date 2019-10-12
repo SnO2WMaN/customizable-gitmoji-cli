@@ -1,7 +1,7 @@
 import inquirer from 'inquirer'
 import chalk from 'chalk'
-import SimpleGit from 'simple-git/promise'
 import consola from 'consola'
+import execa from 'execa'
 
 import { getConfig, ConfigKeys } from '../config'
 import getGitmojis from '../getGitmojis'
@@ -9,12 +9,15 @@ import getGitmojis from '../getGitmojis'
 // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 
-const git = SimpleGit()
+async function isNoStaged() {
+  const { stdout } = await execa('git', ['diff', '--name-only', '--cached'])
+  return stdout.split('\n').length - 1 < 1
+}
 
 export default async function() {
   const gitmojis = await getGitmojis()
 
-  if ((await git.diff(['--name-only', '--cached'])).split('\n').length <= 1) {
+  if (await isNoStaged()) {
     consola.error('No staged files!')
     return
   }
@@ -61,21 +64,17 @@ export default async function() {
     }
   ])
 
-  if (await getConfig(ConfigKeys.AUTO_ADD)) await git.add('.')
+  const commits = ['commit', '-m', `${answer.gitmoji} ${answer.title}`]
+  if (answer.message) commits.push('-m', `${answer.message}`)
+  if (await getConfig(ConfigKeys.SIGNED_COMMIT)) commits.push('-S')
 
-  try {
-    const { commit } = await git.commit([
-      `${answer.gitmoji} ${answer.title}`,
-      answer.message
-    ])
-    consola.success('Commit success!')
-    ;(await git.show([commit, '--shortstat', '--pretty=%an | %s']))
-      .split('\n')
-      .forEach(line => {
-        consola.info(line)
-      })
-  } catch (error) {
-    consola.error('Commit failed!')
-    consola.error(error)
-  }
+  if (await getConfig(ConfigKeys.AUTO_ADD))
+    await execa('git', ['add', '.'])
+      .then(() => execa('git', commits))
+      .then(responce => consola.info(chalk.blue(responce.stdout)))
+      .catch(error => consola.error(error))
+  else
+    execa('git', commits)
+      .then(responce => consola.info(chalk.blue(responce.stdout)))
+      .catch(error => consola.error(error))
 }
