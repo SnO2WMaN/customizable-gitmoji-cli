@@ -28,7 +28,6 @@
     "gitmoji-preset-base": "^1.0.0",
     "inquirer": "^7.0.0",
     "inquirer-autocomplete-prompt": "^1.0.1",
-    "simple-git": "^1.126.0",
     "update-notifier": "^3.0.1"
   },
   "devDependencies": {

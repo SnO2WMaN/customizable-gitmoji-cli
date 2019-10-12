@@ -1,13 +1,14 @@
 import path from 'path'
-import SimpleGit from 'simple-git/promise'
 import consola from 'consola'
-
-const git = SimpleGit()
+import execa from 'execa'
 
 export default async function() {
   try {
-    const gitPath = await git.revparse(['--absolute-git-dir'])
-    return path.join(await gitPath, '/hooks/prepare-commit-msg')
+    const { stdout: gitPath } = await execa('git', [
+      'rev-parse',
+      '--absolute-git-dir'
+    ])
+    return path.join(gitPath.trim(), '/hooks/prepare-commit-msg')
   } catch (error) {
     consola.error(error)
     return false
