@@ -19,6 +19,8 @@ export default async function() {
     return
   }
 
+  const emojiFormat = await getConfig(ConfigKeys.EMOJI_FORMAT)
+  const titleMaxLength = await getConfig(ConfigKeys.TITLE_MAX_LENGTH)
   const answer = await inquirer.prompt([
     {
       name: 'gitmoji',
@@ -37,7 +39,7 @@ export default async function() {
             })
             .map(gitmoji => ({
               name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-              value: gitmoji[getConfig(ConfigKeys.EMOJI_FORMAT)]
+              value: gitmoji[emojiFormat]
             }))
         )
       }
@@ -49,8 +51,7 @@ export default async function() {
         !title || title.includes('`')
           ? chalk.red('Enter a valid commit title')
           : true,
-      transformer: input =>
-        `[${input.length}/${getConfig(ConfigKeys.TITLE_MAX_LENGTH)}]: ${input}`
+      transformer: input => `[${input.length}/${titleMaxLength}]: ${input}`
     },
     {
       name: 'message',
@@ -60,7 +61,7 @@ export default async function() {
     }
   ])
 
-  if (getConfig(ConfigKeys.AUTO_ADD)) await git.add('.')
+  if (await getConfig(ConfigKeys.AUTO_ADD)) await git.add('.')
 
   try {
     const { commit } = await git.commit([

@@ -1,12 +1,14 @@
 import Conf from 'conf'
 
+import explorer from './configExplorer'
+
 const config = new Conf()
 
 export enum ConfigKeys {
-  AUTO_ADD = 'auto_add',
-  EMOJI_FORMAT = 'emoji_format',
-  SIGNED_COMMIT = 'signed_commit',
-  TITLE_MAX_LENGTH = 'title_max_length'
+  AUTO_ADD = 'autoAdd',
+  EMOJI_FORMAT = 'emojiFormat',
+  SIGNED_COMMIT = 'signedCommit',
+  TITLE_MAX_LENGTH = 'titleMaxLength'
 }
 
 type Config = {
@@ -16,6 +18,24 @@ type Config = {
   [ConfigKeys.TITLE_MAX_LENGTH]: number
 }
 
+function valid<T extends ConfigKeys>(
+  key: T,
+  value: unknown
+): value is Config[T] {
+  switch (key) {
+    case ConfigKeys.AUTO_ADD:
+      return typeof value === 'boolean'
+    case ConfigKeys.EMOJI_FORMAT:
+      return value === 'emoji' || value === 'code'
+    case ConfigKeys.SIGNED_COMMIT:
+      return typeof value === 'boolean'
+    case ConfigKeys.TITLE_MAX_LENGTH:
+      return typeof value === 'number' && value > 0 && value <= 72
+    default:
+      throw new Error(`Invalid key : ${key}`)
+  }
+}
+
 export const defaults = {
   [ConfigKeys.AUTO_ADD]: false,
   [ConfigKeys.EMOJI_FORMAT]: 'code',
@@ -23,16 +43,35 @@ export const defaults = {
   [ConfigKeys.TITLE_MAX_LENGTH]: 48
 }
 
-export function getConfig<T extends ConfigKeys>(key: T): Config[T] {
+export async function getConfig<T extends ConfigKeys>(
+  key: T
+): Promise<Config[T]> {
+  const result = await explorer.search()
+  if (result && !result.isEmpty && result.config[key]) {
+    const value = result.config[key]
+    return valid(key, value)
+      ? value
+      : Promise.reject(
+          new Error(
+            `${key} must be ${
+              key === ConfigKeys.EMOJI_FORMAT
+                ? '"code" / "emoji"'
+                : key === ConfigKeys.TITLE_MAX_LENGTH
+                ? 'Number (0 < n <= 72)'
+                : 'Boolean'
+            }`
+          )
+        )
+  }
   return config.get(key, defaults[key])
 }
 
-export function getConfigs(): Config {
+export async function getConfigs(): Promise<Config> {
   return {
-    [ConfigKeys.AUTO_ADD]: getConfig(ConfigKeys.AUTO_ADD),
-    [ConfigKeys.EMOJI_FORMAT]: getConfig(ConfigKeys.EMOJI_FORMAT),
-    [ConfigKeys.SIGNED_COMMIT]: getConfig(ConfigKeys.SIGNED_COMMIT),
-    [ConfigKeys.TITLE_MAX_LENGTH]: getConfig(ConfigKeys.TITLE_MAX_LENGTH)
+    [ConfigKeys.AUTO_ADD]: await getConfig(ConfigKeys.AUTO_ADD),
+    [ConfigKeys.EMOJI_FORMAT]: await getConfig(ConfigKeys.EMOJI_FORMAT),
+    [ConfigKeys.SIGNED_COMMIT]: await getConfig(ConfigKeys.SIGNED_COMMIT),
+    [ConfigKeys.TITLE_MAX_LENGTH]: await getConfig(ConfigKeys.TITLE_MAX_LENGTH)
   }
 }
 

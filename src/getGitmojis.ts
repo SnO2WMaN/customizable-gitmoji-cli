@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, import/no-dynamic-require, global-require */
 
-import cosmiconfig from 'cosmiconfig'
-
-const explorer = cosmiconfig('gitmoji')
+import explorer from './configExplorer'
 
 export function getFromConfig(
   defaults: Gitmoji[],

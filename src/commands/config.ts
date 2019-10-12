@@ -1,8 +1,27 @@
+import consola from 'consola'
+import chalk from 'chalk'
 import inquirer from 'inquirer'
-import { ConfigKeys, setConfig, defaults } from '../config'
+import { ConfigKeys, setConfig, defaults, getConfigs } from '../config'
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
+
+export async function list() {
+  const configs = await getConfigs()
+  const longest = Object.keys(configs)
+    .map(c => c.length)
+    .reduce((accumulator, current) => Math.max(accumulator, current))
+  Object.entries(configs).forEach(({ 0: key, 1: value }) => {
+    consola.info(
+      [
+        key,
+        ''.padStart(longest - key.length + 1, ' '),
+        ': ',
+        chalk.yellow(String(value))
+      ].join('')
+    )
+  })
+}
 
 export default async function() {
   const answer = await inquirer.prompt([
