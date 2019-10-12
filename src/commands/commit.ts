@@ -2,6 +2,7 @@ import inquirer from 'inquirer'
 import chalk from 'chalk'
 import consola from 'consola'
 import execa from 'execa'
+import fs from 'fs'
 
 import { getConfig, ConfigKeys } from '../config'
 import getGitmojis from '../getGitmojis'
@@ -14,7 +15,7 @@ async function isNoStaged() {
   return stdout.split('\n').length - 1 < 1
 }
 
-export default async function() {
+export default async function(hook?: boolean) {
   const gitmojis = await getGitmojis()
 
   if (await isNoStaged()) {
@@ -64,17 +65,27 @@ export default async function() {
     }
   ])
 
-  const commits = ['commit', '-m', `${answer.gitmoji} ${answer.title}`]
-  if (answer.message) commits.push('-m', `${answer.message}`)
-  if (await getConfig(ConfigKeys.SIGNED_COMMIT)) commits.push('-S')
+  const commitTitle = `${answer.gitmoji} ${answer.title}`
+  const commitBody = `${answer.message}`
 
-  if (await getConfig(ConfigKeys.AUTO_ADD))
-    await execa('git', ['add', '.'])
-      .then(() => execa('git', commits))
-      .then(responce => consola.info(chalk.blue(responce.stdout)))
-      .catch(error => consola.error(error))
-  else
-    execa('git', commits)
-      .then(responce => consola.info(chalk.blue(responce.stdout)))
-      .catch(error => consola.error(error))
+  if (hook) {
+    try {
+      fs.writeFileSync(process.argv[4], `${commitTitle}\n\n${commitBody}`)
+    } catch (error) {
+      consola.error(error)
+    }
+  } else {
+    const commits = ['commit', '-m', commitTitle]
+    if (commitBody) commits.push('-m', commitBody)
+    if (await getConfig(ConfigKeys.SIGNED_COMMIT)) commits.push('-S')
+    if (await getConfig(ConfigKeys.AUTO_ADD))
+      await execa('git', ['add', '.'])
+        .then(() => execa('git', commits))
+        .then(responce => consola.info(chalk.blue(responce.stdout)))
+        .catch(error => consola.error(error))
+    else
+      execa('git', commits)
+        .then(responce => consola.info(chalk.blue(responce.stdout)))
+        .catch(error => consola.error(error))
+  }
 }

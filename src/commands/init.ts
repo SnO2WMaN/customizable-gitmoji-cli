@@ -8,7 +8,7 @@ export default async function() {
   if (!hookPath) return
   fs.writeFile(
     hookPath,
-    '#!/bin/sh\n# gitmoji as a commit hook\nexec < /dev/tty\ngitmoji commit\n',
+    '#!/bin/sh\n# gitmoji as a commit hook\nexec < /dev/tty\ngitmoji commit --hook $1\n',
     { mode: 0o775 },
     error => {
       if (error) consola.error(error)

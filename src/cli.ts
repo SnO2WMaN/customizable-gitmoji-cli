@@ -21,11 +21,17 @@ cli
   .command('config', 'Setup gitmoji-cli preferences')
   .option('-l, --list', 'List config')
   .action(async options => {
-    if (options.list) listConfigs()
-    else config()
+    if (options.list) await listConfigs()
+    else await config()
   })
 
-cli.command('commit', 'Interactively commit using the prompts').action(commit)
+cli
+  .command('commit', 'Interactively commit using the prompts')
+  .option('--hook', 'Option for git hook')
+  .action(async options => {
+    if (options.hook) await commit(true)
+    else commit()
+  })
 
 cli.command('init', 'Initialize gitmoji as a commit hook').action(init)
 cli
