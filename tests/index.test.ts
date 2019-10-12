@@ -2,6 +2,7 @@ import consola from 'consola'
 
 import { getConfig, setConfig, ConfigKeys } from '~/config'
 import { parseLine } from '~/parseLines'
+import { getFromConfig } from '~/getGitmojis'
 
 import { list } from '~/commands/list'
 import { search } from '~/commands/search'
@@ -44,6 +45,20 @@ const gitmojis = [
     code: ':fire:',
     description: 'Removing code or files.',
     name: 'fire'
+  },
+  {
+    emoji: '💵',
+    entity: '&#128181;',
+    code: ':dollar:',
+    description: 'Adding financial things',
+    name: 'dollar'
+  },
+  {
+    emoji: '✨',
+    entity: '&#x2728;',
+    code: ':sparkles:',
+    description: 'Introducing new features.',
+    name: 'sparkles'
   }
 ]
 
@@ -78,5 +93,21 @@ describe('commands', () => {
 describe('parse line', () => {
   it('should match for parseLine', () => {
     expect(parseLine(gitmojis[0], 3)).toMatchSnapshot()
+  })
+})
+
+describe('get gitmojis', () => {
+  it('should match for defaults', () => {
+    expect(getFromConfig(gitmojis)).toMatchSnapshot()
+  })
+  describe('have config', () => {
+    it('should have rules', () => {
+      expect(getFromConfig([], { rules: gitmojis })).toMatchSnapshot()
+    })
+    it('should have ordered rules', () => {
+      expect(
+        getFromConfig([], { rules: gitmojis, order: ['sparkles'] })
+      ).toMatchSnapshot()
+    })
   })
 })
