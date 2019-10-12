@@ -1,18 +1,17 @@
 {
-  "private": true,
-  "name": "gitmoji-cli",
-  "description": "A gitmoji client for using emojis on commit messages.",
+  "name": "customizable-gitmoji-cli",
+  "description": "Customizable gitmoji cli",
   "license": "MIT",
-  "author": "Carlos Cuesta",
-  "homepage": "https://github.com/SnO2WMaN/customizable-gitmoji-cli#readme",
+  "author": "SnO2WMaN <sno2wman.official@gmail.com> (https://sno2wman.dev)",
+  "homepage": "https://github.com/gitmoji-org/customizable-gitmoji-cli#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SnO2WMaN/customizable-gitmoji-cli.git"
+    "url": "git+https://github.com/gitmoji-org/customizable-gitmoji-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/SnO2WMaN/customizable-gitmoji-cli/issues"
+    "url": "https://github.com/gitmoji-org/customizable-gitmoji-cli/issues"
   },
-  "version": "2.0.0",
+  "version": "0.0.0",
   "bin": {
     "gitmoji": "lib/cli.js"
   },
@@ -48,6 +47,7 @@
     "husky": "^3.0.8",
     "jest": "^24.0.0",
     "lint-staged": "^9.4.1",
+    "np": "^5.1.1",
     "prettier": "^1.18.2",
     "rollup": "^1.23.1",
     "rollup-plugin-json": "^4.0.0",
@@ -70,6 +70,8 @@
     "fmt": "prettier **/*.{js,json,yml,md} --write",
     "lint": "eslint src . --ext .js,.ts --fix",
     "test": "jest",
-    "codecov": "codecov"
+    "codecov": "codecov",
+    "prerelease": "npm run build",
+    "release": "np"
   }
 }
