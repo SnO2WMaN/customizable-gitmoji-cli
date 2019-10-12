@@ -1,13 +1,3 @@
 {
-  "presets": ["base"],
-  "rules": [
-    {
-      "emoji": "💵",
-      "entity": "&#128181;",
-      "code": ":dollar:",
-      "description": "Adding financial things",
-      "name": "dollar"
-    }
-  ],
-  "order": ["dollar"]
+  "presets": ["base"]
 }
