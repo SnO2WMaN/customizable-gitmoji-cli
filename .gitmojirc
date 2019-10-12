@@ -1,3 +1,4 @@
 {
-  "presets": ["base"]
+  "presets": ["base"],
+  "emojiFormat": "emoji"
 }
