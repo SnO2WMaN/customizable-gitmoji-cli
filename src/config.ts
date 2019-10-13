@@ -32,7 +32,7 @@ function valid<T extends ConfigKeys>(
   }
 }
 
-export const defaults = {
+export const defaults: Config = {
   [ConfigKeys.AUTO_ADD]: false,
   [ConfigKeys.EMOJI_FORMAT]: 'code',
   [ConfigKeys.SIGNED_COMMIT]: false,
@@ -59,7 +59,7 @@ export async function getConfig<T extends ConfigKeys>(
           )
         )
   }
-  return new Promise(() => defaults[key])
+  return defaults[key]
 }
 
 export async function getConfigs(): Promise<Config> {

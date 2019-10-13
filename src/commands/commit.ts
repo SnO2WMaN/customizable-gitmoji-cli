@@ -3,6 +3,7 @@ import chalk from 'chalk'
 import consola from 'consola'
 import execa from 'execa'
 import fs from 'fs'
+import { promisify } from 'util'
 
 import { getConfig, ConfigKeys } from '../config'
 import getGitmojis from '../getGitmojis'
@@ -12,9 +13,9 @@ inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 
 export default async function(hook?: boolean) {
   const gitmojis = await getGitmojis()
-
   const emojiFormat = await getConfig(ConfigKeys.EMOJI_FORMAT)
   const titleMaxLength = await getConfig(ConfigKeys.TITLE_MAX_LENGTH)
+
   const answer = await inquirer.prompt([
     {
       name: 'gitmoji',
@@ -57,10 +58,12 @@ export default async function(hook?: boolean) {
 
   const commitTitle = `${answer.gitmoji} ${answer.title}`
   const commitBody = `${answer.message}`
-
   if (hook) {
     try {
-      fs.writeFileSync(process.argv[4], `${commitTitle}\n\n${commitBody}`)
+      await promisify(fs.writeFile)(
+        process.argv[4],
+        `${commitTitle}\n\n${commitBody}`
+      )
     } catch (error) {
       consola.error(error)
     }
@@ -74,7 +77,7 @@ export default async function(hook?: boolean) {
         .then(responce => consola.info(chalk.blue(responce.stdout)))
         .catch(error => consola.error(error))
     else
-      execa('git', commits)
+      await execa('git', commits)
         .then(responce => consola.info(chalk.blue(responce.stdout)))
         .catch(error => consola.error(error))
   }

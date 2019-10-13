@@ -20,8 +20,7 @@ cli
   .command('commit', 'Interactively commit using the prompts')
   .option('--hook', 'Option for git hook')
   .action(async options => {
-    if (options.hook) await commit(true)
-    else commit()
+    await commit(options.hook || false)
   })
 
 cli.command('init', 'Initialize gitmoji as a commit hook').action(init)
