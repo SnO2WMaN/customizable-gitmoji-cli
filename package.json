@@ -3,13 +3,13 @@
   "description": "Customizable gitmoji cli",
   "license": "MIT",
   "author": "SnO2WMaN <sno2wman.official@gmail.com> (https://sno2wman.dev)",
-  "homepage": "https://github.com/gitmoji-org/customizable-gitmoji-cli#readme",
+  "homepage": "https://github.com/SnO2WMaN/customizable-gitmoji-cli#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gitmoji-org/customizable-gitmoji-cli.git"
+    "url": "git+https://github.com/SnO2WMaN/customizable-gitmoji-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/gitmoji-org/customizable-gitmoji-cli/issues"
+    "url": "https://github.com/SnO2WMaN/customizable-gitmoji-cli/issues"
   },
   "version": "0.0.1-6",
   "bin": {

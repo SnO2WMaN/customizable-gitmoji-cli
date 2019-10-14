@@ -6,9 +6,9 @@
 <div align="center">
 <p>
 
-[![CircleCI](https://circleci.com/gh/gitmoji-org/customizable-gitmoji-cli.svg?style=svg)](https://circleci.com/gh/gitmoji-org/customizable-gitmoji-cli)
-[![codecov](https://codecov.io/gh/gitmoji-org/customizable-gitmoji-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/gitmoji-org/customizable-gitmoji-cli)
-[![Maintainability](https://api.codeclimate.com/v1/badges/50be3bef231058c00dc7/maintainability)](https://codeclimate.com/github/gitmoji-org/customizable-gitmoji-cli/maintainability)
+[![CircleCI](https://circleci.com/gh/SnO2WMaN/customizable-gitmoji-cli.svg?style=svg)](https://circleci.com/gh/SnO2WMaN/customizable-gitmoji-cli)
+[![codecov](https://codecov.io/gh/SnO2WMaN/customizable-gitmoji-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/SnO2WMaN/customizable-gitmoji-cli)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2cff863272e7a47dd100/maintainability)](https://codeclimate.com/github/SnO2WMaN/customizable-gitmoji-cli/maintainability)
 
 [![LICENSE](https://img.shields.io/github/license/conten2/eslint-config?style=flat-square)](https://www.npmjs.com/package/@conten2/eslint-config)
 [![Renovate](https://img.shields.io/badge/renovate-enabled-25c4c3.svg?style=flat-square)](https://renovatebot.com/)
