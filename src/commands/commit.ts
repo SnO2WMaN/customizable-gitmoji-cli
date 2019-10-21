@@ -7,16 +7,20 @@ import { promisify } from 'util'
 
 import { getConfig, ConfigKeys } from '../config'
 import getGitmojis from '../getGitmojis'
+import getScopes from '../getScopes'
+
+const customScopeValue = 'CUSTOM_SCOPE'
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 
 export default async function(hook?: boolean) {
   const gitmojis = await getGitmojis()
+  const scopes = await getScopes()
   const emojiFormat = await getConfig(ConfigKeys.EMOJI_FORMAT)
   const titleMaxLength = await getConfig(ConfigKeys.TITLE_MAX_LENGTH)
 
-  const answer = await inquirer.prompt([
+  const { gitmoji: gitmojiAnswer } = await inquirer.prompt([
     {
       name: 'gitmoji',
       message: 'Choose a gitmoji:',
@@ -38,7 +42,32 @@ export default async function(hook?: boolean) {
             }))
         )
       }
-    },
+    }
+  ])
+  let scopeAnswer = (await inquirer.prompt([
+    {
+      name: 'scope',
+      message: 'Choose a scope:',
+      type: 'list',
+      choices: [
+        ...scopes,
+        new inquirer.Separator(),
+        { name: 'Custom scope.', value: customScopeValue },
+        { name: 'No scope.', value: null }
+      ]
+    }
+  ])).scope
+  if (scopeAnswer === customScopeValue) {
+    scopeAnswer = (await inquirer.prompt([
+      {
+        name: 'scope',
+        message: 'Input custom scope:',
+        type: 'input'
+      }
+    ])).scope
+  }
+
+  const { title: titleAnswer, message: messageAnswer } = await inquirer.prompt([
     {
       name: 'title',
       message: 'Enter the commit title',
@@ -56,8 +85,9 @@ export default async function(hook?: boolean) {
     }
   ])
 
-  const commitTitle = `${answer.gitmoji} ${answer.title}`
-  const commitBody = `${answer.message}`
+  const prefix = `${gitmojiAnswer}${scopeAnswer ? `(${scopeAnswer})` : ''}`
+  const commitTitle = `${prefix} ${titleAnswer}`
+  const commitBody = `${messageAnswer}`
   if (hook) {
     try {
       await promisify(fs.writeFile)(
