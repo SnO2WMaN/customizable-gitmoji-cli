@@ -82,9 +82,6 @@ export async function saveConfig(configPath?: string) {
     ? await configExplorer.load(configPath)
     : await configExplorer.search()
   if (result && !result.isEmpty) {
-    if ('rules' in result.config && validate('rules', result.config.rules))
-      defaultConfig.presets = null
-
     const {
       autoAdd,
       emojiFormat,
@@ -101,7 +98,7 @@ export async function saveConfig(configPath?: string) {
     validate('signedCommit', signedCommit)
     validate('titleMaxLength', titleMaxLength)
     validate('order', order)
-    validate('presets', presets)
+    if (presets) validate('presets', presets)
     validate('scopes', scopes)
 
     cache = {

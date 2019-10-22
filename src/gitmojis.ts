@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-require-imports, import/no-dynamic-require, global-require */
-
-import config from './config'
+import config, { Gitmoji, validate } from './config'
 
 type PresetName = string
 
@@ -12,14 +10,25 @@ export function isCorrectPresetName(value: unknown): value is PresetName {
   return /.+(\/.+)?/.test(value)
 }
 
+export function parsePackageName(preset: PresetName): string {
+  if (preset.startsWith('@')) return preset
+  if (preset.startsWith('gitmoji-preset')) return preset
+  return `gitmoji-preset-${preset}`
+}
+
 export default async function() {
   const { presets, rules, order } = await config()
 
-  const gitmojis = []
+  const gitmojis: Gitmoji[] = []
   if (presets) {
-    ;(Array.isArray(presets) ? presets : [presets]).forEach(preset => {
-      gitmojis.push(...require(`gitmoji-preset-${preset}`))
-    })
+    await Promise.all(
+      (Array.isArray(presets) ? presets : [presets]).map(async preset => {
+        const { default: gitmojisOutput } = await import(
+          parsePackageName(preset)
+        )
+        if (validate('rules', gitmojisOutput)) gitmojis.push(...gitmojisOutput)
+      })
+    )
   }
   gitmojis.push(...rules)
   return [
@@ -29,5 +38,3 @@ export default async function() {
     ...gitmojis.filter(({ name }) => !order.includes(name))
   ]
 }
-
-/* eslint-enable */
