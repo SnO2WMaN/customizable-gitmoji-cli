@@ -1,16 +1,6 @@
-import config, { Gitmoji, validate, Configuration } from './config'
+import { Gitmoji, validate, Configuration } from './config'
 
-type PresetName = string
-
-export function isCorrectPresetName(value: unknown): value is PresetName {
-  if (typeof value !== 'string') return false
-  if (value.startsWith('@')) return /^@.+\/gitmoji-preset(\/.+)?$/.test(value)
-  if (value.startsWith('gitmoji-preset'))
-    return /^gitmoji-preset-.+$/.test(value)
-  return /.+(\/.+)?/.test(value)
-}
-
-export function parsePackageName(preset: PresetName): string {
+export function parsePackageName(preset: string): string {
   if (preset.startsWith('@')) return preset
   if (preset.startsWith('gitmoji-preset')) return preset
   return `gitmoji-preset-${preset}`

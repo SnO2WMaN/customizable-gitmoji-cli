@@ -3,11 +3,11 @@ import update from 'update-notifier'
 
 import pkg from '../package.json'
 
-import commit from './commands/commit'
-import list from './commands/list'
-import search from './commands/search'
-import init from './commands/init'
-import remove from './commands/remove'
+import commitCommand from './commands/commit'
+import listCommand from './commands/list'
+import searchCommand from './commands/search'
+import initCommand from './commands/init'
+import removeCommand from './commands/remove'
 
 update({ pkg }).notify()
 
@@ -20,7 +20,7 @@ cli
     'Location of .gitmojirc (or gitmoji setting) file'
   )
   .action(async ({ config }) => {
-    await list(config)
+    await listCommand(config)
   })
 cli
   .command('search [query]', 'Search gitmojis')
@@ -29,7 +29,7 @@ cli
     'Location of .gitmojirc (or gitmoji setting) file'
   )
   .action(async (query, { config }) => {
-    await search(query, config)
+    await searchCommand(query, config)
   })
 
 cli
@@ -40,13 +40,13 @@ cli
     'Location of .gitmojirc (or gitmoji setting) file'
   )
   .action(async ({ config, hook }) => {
-    await commit(config, hook || false)
+    await commitCommand(config, hook || false)
   })
 
-cli.command('init', 'Initialize gitmoji as a commit hook').action(init)
+cli.command('init', 'Initialize gitmoji as a commit hook').action(initCommand)
 cli
   .command('remove', 'Remove a previously initialized commit hook')
-  .action(remove)
+  .action(removeCommand)
 
 cli.version(pkg.version)
 cli.help()

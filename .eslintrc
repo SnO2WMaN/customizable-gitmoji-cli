@@ -6,5 +6,6 @@
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
-  }
+  },
+  "rules": { "@typescript-eslint/no-magic-numbers": [1, { "ignore": [0, 1] }] }
 }

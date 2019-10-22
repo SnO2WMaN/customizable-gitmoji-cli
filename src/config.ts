@@ -1,5 +1,6 @@
 import cosmiconfig from 'cosmiconfig'
-import { isCorrectPresetName } from './gitmojis'
+
+const GIT_COMMIT_TITLE_MAX_LENGTH = 72
 
 const configExplorer = cosmiconfig('gitmoji', { cache: false })
 
@@ -18,6 +19,15 @@ export type Configuration = {
   rules: Gitmoji[]
   scopes: []
   order: string[]
+}
+
+type PresetName = string
+export function validatePresetName(value: unknown): value is PresetName {
+  if (typeof value !== 'string') return false
+  if (value.startsWith('@')) return /^@.+\/gitmoji-preset(\/.+)?$/.test(value)
+  if (value.startsWith('gitmoji-preset'))
+    return /^gitmoji-preset-.+$/.test(value)
+  return /.+(\/.+)?/.test(value)
 }
 
 export function validateGitmoji(value: unknown): value is Gitmoji {
@@ -49,11 +59,15 @@ export function validate<T extends keyof Configuration>(
         case 'signedCommit':
           return typeof value === 'boolean'
         case 'titleMaxLength':
-          return typeof value === 'number' && value > 0 && value <= 72
+          return (
+            typeof value === 'number' &&
+            value > 0 &&
+            value <= GIT_COMMIT_TITLE_MAX_LENGTH
+          )
         case 'presets':
           return (
             typeof value === 'string' ||
-            (Array.isArray(value) && value.every(isCorrectPresetName))
+            (Array.isArray(value) && value.every(validatePresetName))
           )
         case 'rules':
           return Array.isArray(value) && value.every(v => validateGitmoji(v))

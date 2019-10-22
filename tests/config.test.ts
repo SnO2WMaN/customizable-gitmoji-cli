@@ -1,7 +1,11 @@
 import test from 'ava'
 
-import loadConfig, { validate, validateGitmoji } from '~/config'
-import { isCorrectPresetName, parsePackageName } from '~/gitmojis'
+import loadConfig, {
+  validate,
+  validateGitmoji,
+  validatePresetName
+} from '~/config'
+import { parsePackageName } from '~/gitmojis'
 
 test('Validate config autoAdd', t => {
   // success
@@ -32,6 +36,7 @@ test('Validate config signedCommit', t => {
 })
 
 test('Validate config titleMaxLength', t => {
+  /* eslint-disable @typescript-eslint/no-magic-numbers */
   // success
   t.true(validate('titleMaxLength', 48))
   t.true(validate('titleMaxLength', 64))
@@ -41,6 +46,7 @@ test('Validate config titleMaxLength', t => {
   t.throws(() => validate('titleMaxLength', 100))
   t.throws(() => validate('titleMaxLength', 'string'))
   t.throws(() => validate('titleMaxLength', true))
+  /* eslint-enable @typescript-eslint/no-magic-numbers */
 })
 
 test('Validate config order', t => {
@@ -49,8 +55,8 @@ test('Validate config order', t => {
   t.true(validate('order', ['a', 'b']))
   t.true(validate('order', []))
   // fail
-  t.throws(() => validate('order', [1, 2]))
-  t.throws(() => validate('order', ['a', 2]))
+  t.throws(() => validate('order', [1, 1]))
+  t.throws(() => validate('order', ['a', 1]))
   t.throws(() => validate('order', 'a'))
 })
 
@@ -60,8 +66,8 @@ test('Validate config scopes', t => {
   t.true(validate('scopes', ['a', 'b']))
   t.true(validate('scopes', []))
   // fail
-  t.throws(() => validate('scopes', [1, 2]))
-  t.throws(() => validate('scopes', ['a', 2]))
+  t.throws(() => validate('scopes', [1, 1]))
+  t.throws(() => validate('scopes', ['a', 1]))
   t.throws(() => validate('scopes', 'a'))
 })
 
@@ -73,7 +79,7 @@ test('Validate config presets', t => {
   t.true(validate('presets', []))
   // fail
   t.throws(() => validate('presets', true))
-  t.throws(() => validate('presets', 2))
+  t.throws(() => validate('presets', 1))
 })
 
 test('Validate config gitmojis', t => {
@@ -139,15 +145,15 @@ test('Validate gitmoji', t => {
 
 test('Validate preset name', t => {
   // success
-  t.true(isCorrectPresetName('@sno2wman/gitmoji-preset'))
-  t.true(isCorrectPresetName('@sno2wman/gitmoji-preset/oss'))
-  t.true(isCorrectPresetName('gitmoji-preset-base'))
-  t.true(isCorrectPresetName('base'))
-  t.true(isCorrectPresetName('base/oss'))
+  t.true(validatePresetName('@sno2wman/gitmoji-preset'))
+  t.true(validatePresetName('@sno2wman/gitmoji-preset/oss'))
+  t.true(validatePresetName('gitmoji-preset-base'))
+  t.true(validatePresetName('base'))
+  t.true(validatePresetName('base/oss'))
   // fail
-  t.false(isCorrectPresetName('@sno2wman'))
-  t.false(isCorrectPresetName('@sno2wman'))
-  t.false(isCorrectPresetName('gitmoji-preset'))
+  t.false(validatePresetName('@sno2wman'))
+  t.false(validatePresetName('@sno2wman'))
+  t.false(validatePresetName('gitmoji-preset'))
 })
 
 test('Validate parsing preset name to package name', t => {

@@ -92,7 +92,7 @@ export default async function(configPath?: string, hook?: boolean) {
   if (hook) {
     try {
       await promisify(fs.writeFile)(
-        process.argv[4],
+        process.argv[4], // eslint-disable-line @typescript-eslint/no-magic-numbers
         `${commitTitle}\n\n${commitBody}`
       )
     } catch (error) {
