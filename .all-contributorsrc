@@ -1,0 +1,43 @@
+{
+  "projectName": "customizable-gitmoji-cli",
+  "projectOwner": "SnO2WMaN",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "gitmoji",
+  "contributors": [
+    {
+      "login": "SnO2WMaN",
+      "name": "SnO₂WMaN",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/15155608?v=4",
+      "profile": "https://sno2wman.dev/",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "renovate-bot",
+      "name": "Renovate Bot",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/25180681?v=4",
+      "profile": "https://renovatebot.com",
+      "contributions": [
+        "infra"
+      ]
+    },
+    {
+      "login": "carloscuesta",
+      "name": "Carlos Cuesta",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/7629661?v=4",
+      "profile": "https://carloscuesta.me",
+      "contributions": [
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

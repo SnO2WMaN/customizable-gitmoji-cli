@@ -6,6 +6,13 @@
     "git add"
   ],
   "*[!package].json": ["prettier --write", "git add"],
+  ".all-contributorsrc": [
+    "all-contributors generate",
+    "git add",
+    "git add README.md"
+  ],
+  "README.md": ["all-contributors generate", "prettier --write", "git add"],
+  "*[!README].md": ["prettier --write", "git add"],
   "*.{js,ts}": ["eslint --fix", "prettier --write", "git add"],
   "*.yml": ["prettier --write", "git add"]
 }
