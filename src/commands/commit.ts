@@ -41,7 +41,8 @@ export default async function(hook?: boolean) {
             })
             .map(gitmoji => ({
               name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-              value: gitmoji[emojiFormat]
+              value:
+                emojiFormat === 'emoji' ? gitmoji.emoji : `:${gitmoji.name}:`
             }))
         )
       }

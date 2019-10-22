@@ -3,14 +3,14 @@ import chalk from 'chalk'
 import { Gitmoji } from './config'
 
 export function parseLine(
-  { emoji, code, description }: Gitmoji,
+  { emoji, name, description }: Gitmoji,
   longest: number
 ) {
   const line = [
     emoji,
     ' - ',
-    chalk.blue(code),
-    ''.padStart(longest - code.length + 1, ' '),
+    chalk.blue(`:${name}:`),
+    ''.padStart(longest - name.length + 1, ' '),
     '│ ',
     description
   ].join('')
@@ -21,7 +21,7 @@ export default function(gitmojis?: Gitmoji[]) {
   if (!gitmojis || gitmojis.length <= 0) return false
 
   const longest = gitmojis
-    .map(({ code }) => code.length)
+    .map(({ name }) => name.length)
     .reduce((accumulator, current) => Math.max(accumulator, current))
   return gitmojis.map(gitmoji => parseLine(gitmoji, longest))
 }
