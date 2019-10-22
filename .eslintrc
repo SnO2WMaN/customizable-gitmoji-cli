@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": ["@conten2/eslint-config", "@conten2/eslint-config/+jest"],
+  "extends": ["@conten2/eslint-config", "plugin:ava/recommended"],
   "rules": {
     "no-shadow": 1,
     "no-underscore-dangle": 0,

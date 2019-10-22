@@ -40,12 +40,15 @@
     "@types/inquirer": "^6.5.0",
     "@types/update-notifier": "^2.5.0",
     "add": "^2.0.6",
+    "ava": "^2.4.0",
     "codecov": "^3.6.1",
     "eslint": "^6.5.1",
+    "eslint-plugin-ava": "^9.0.0",
     "eslint-plugin-jest": "^22.17.0",
     "husky": "^3.0.8",
     "lint-staged": "^9.4.1",
     "np": "^5.1.1",
+    "nyc": "^14.1.1",
     "prettier": "^1.18.2",
     "rollup": "^1.23.1",
     "rollup-plugin-add-shebang": "^0.3.1",
@@ -53,6 +56,7 @@
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-typescript2": "^0.24.3",
     "ts-node": "^8.4.1",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.6.3"
   },
   "keywords": [
@@ -67,6 +71,7 @@
     "build": "rollup -c",
     "fmt": "prettier **/*.{js,json,yml,md} --write",
     "lint": "eslint src . --ext .js,.ts --fix",
+    "test": "ava",
     "codecov": "codecov",
     "prerelease": "npm run build",
     "release": "np"

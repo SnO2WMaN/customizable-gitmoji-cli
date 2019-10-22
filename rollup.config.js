@@ -10,7 +10,12 @@ export default {
     format: 'cjs'
   },
   plugins: [
-    typescript({ rollupCommonJSResolveHack: true }),
+    typescript({
+      rollupCommonJSResolveHack: true,
+      tsconfigOverride: {
+        compilerOptions: { module: 'esnext' }
+      }
+    }),
     json(),
     terser(),
     shebang()
