@@ -1,0 +1,20 @@
+{
+  "presets": null,
+  "rules": [
+    {
+      "emoji": "✨",
+      "description": "Introduce new features.",
+      "name": "sparkles"
+    },
+    {
+      "emoji": "👍",
+      "description": "Improve features.",
+      "name": "thumbsup"
+    },
+    {
+      "emoji": "⚡️",
+      "description": "Update about performance.",
+      "name": "zap"
+    }
+  ]
+}

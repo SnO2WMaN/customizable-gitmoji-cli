@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import { validate, validateGitmoji } from '~/config'
+import loadConfig, { validate, validateGitmoji } from '~/config'
 import { isCorrectPresetName, parsePackageName } from '~/gitmojis'
 
 test('Validate config autoAdd', t => {
@@ -160,4 +160,14 @@ test('Validate parsing preset name to package name', t => {
   t.is(parsePackageName('gitmoji-preset-base'), 'gitmoji-preset-base')
   t.is(parsePackageName('base'), 'gitmoji-preset-base')
   t.is(parsePackageName('base/oss'), 'gitmoji-preset-base/oss')
+})
+
+test('Correct gitmojirc', async t => {
+  t.snapshot(await loadConfig('tests/gitmojirc/correct/no-preset/.gitmojirc'))
+})
+
+test('Incorrect gitmojirc ', async t => {
+  await t.throwsAsync(loadConfig('tests/gitmojirc/incorrect/1/.gitmojirc'))
+
+  await t.throwsAsync(loadConfig('tests/gitmojirc/incorrect/2/.gitmojirc'))
 })
