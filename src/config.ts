@@ -77,8 +77,10 @@ const defaultConfig: Configuration = {
 
 let cache: Configuration | undefined
 
-export async function saveConfig(searchFrom?: string) {
-  const result = await configExplorer.search(searchFrom)
+export async function saveConfig(configPath?: string) {
+  const result = configPath
+    ? await configExplorer.load(configPath)
+    : await configExplorer.search()
   if (result && !result.isEmpty) {
     if ('rules' in result.config && validate('rules', result.config.rules))
       defaultConfig.presets = null

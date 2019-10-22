@@ -15,21 +15,37 @@ update({ pkg }).notify()
 
 const cli = cac(pkg.name)
 
-cli.command('list', 'List all the available gitmojis').action(async () => {
-  await saveConfig()
-  await list()
-})
-cli.command('search [query]', 'Search gitmojis').action(async () => {
-  await saveConfig()
-  await search()
-})
+cli
+  .command('list', 'List all the available gitmojis')
+  .option(
+    '-c, --config <config>',
+    'Location of .gitmojirc (or gitmoji setting) file'
+  )
+  .action(async ({ config }) => {
+    await saveConfig(config)
+    await list()
+  })
+cli
+  .command('search [query]', 'Search gitmojis')
+  .option(
+    '-c, --config <config>',
+    'Location of .gitmojirc (or gitmoji setting) file'
+  )
+  .action(async ({ config }) => {
+    await saveConfig(config)
+    await search()
+  })
 
 cli
   .command('commit', 'Interactively commit using the prompts')
   .option('--hook', 'Option for git hook')
-  .action(async options => {
-    await saveConfig()
-    await commit(options.hook || false)
+  .option(
+    '-c, --config <config>',
+    'Location of .gitmojirc (or gitmoji setting) file'
+  )
+  .action(async ({ config, hook }) => {
+    await saveConfig(config)
+    await commit(hook || false)
   })
 
 cli.command('init', 'Initialize gitmoji as a commit hook').action(init)
