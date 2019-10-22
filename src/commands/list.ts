@@ -1,5 +1,4 @@
-import getGitmojis from '../getGitmojis'
-
+import getGitmojis from '../gitmojis'
 import parseLines from '../parseLines'
 
 export function list(array: Gitmoji[]) {

@@ -5,9 +5,8 @@ import execa from 'execa'
 import fs from 'fs'
 import { promisify } from 'util'
 
-import { getConfig, ConfigKeys } from '../config'
-import getGitmojis from '../getGitmojis'
-import getScopes from '../getScopes'
+import config from '../config'
+import getGitmojis from '../gitmojis'
 
 const customScopeValue = 'CUSTOM_SCOPE'
 
@@ -16,9 +15,13 @@ inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 
 export default async function(hook?: boolean) {
   const gitmojis = await getGitmojis()
-  const scopes = await getScopes()
-  const emojiFormat = await getConfig(ConfigKeys.EMOJI_FORMAT)
-  const titleMaxLength = await getConfig(ConfigKeys.TITLE_MAX_LENGTH)
+  const {
+    emojiFormat,
+    titleMaxLength,
+    scopes,
+    signedCommit,
+    autoAdd
+  } = await config()
 
   const { gitmoji: gitmojiAnswer } = await inquirer.prompt([
     {
@@ -100,8 +103,8 @@ export default async function(hook?: boolean) {
   } else {
     const commits = ['commit', '-m', commitTitle]
     if (commitBody) commits.push('-m', commitBody)
-    if (await getConfig(ConfigKeys.SIGNED_COMMIT)) commits.push('-S')
-    if (await getConfig(ConfigKeys.AUTO_ADD))
+    if (signedCommit) commits.push('-S')
+    if (autoAdd)
       await execa('git', ['add', '.'])
         .then(() => execa('git', commits))
         .then(responce => consola.info(chalk.blue(responce.stdout)))
