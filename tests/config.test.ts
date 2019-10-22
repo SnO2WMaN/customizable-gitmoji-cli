@@ -1,6 +1,7 @@
 import test from 'ava'
 
 import { validate, validateGitmoji } from '~/config'
+import { isCorrectPresetName } from '~/gitmojis'
 
 test('Validate config autoAdd', t => {
   // success
@@ -134,4 +135,17 @@ test('Validate gitmoji', t => {
     })
   )
   t.false(validateGitmoji({}))
+})
+
+test('Validate preset name', t => {
+  // success
+  t.true(isCorrectPresetName('@sno2wman/gitmoji-preset'))
+  t.true(isCorrectPresetName('@sno2wman/gitmoji-preset/oss'))
+  t.true(isCorrectPresetName('gitmoji-preset-base'))
+  t.true(isCorrectPresetName('base'))
+  t.true(isCorrectPresetName('base/oss'))
+  // fail
+  t.false(isCorrectPresetName('@sno2wman'))
+  t.false(isCorrectPresetName('@sno2wman'))
+  t.false(isCorrectPresetName('gitmoji-preset'))
 })
