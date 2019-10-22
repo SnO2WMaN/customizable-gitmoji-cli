@@ -54,7 +54,6 @@
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-typescript2": "^0.24.3",
-    "shipjs": "^0.7.1",
     "ts-node": "^8.4.1",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.6.3"
@@ -76,7 +75,6 @@
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "prerelease": "npm run build",
-    "release:prepare": "shipjs prepare",
-    "release:trigger": "shipjs trigger"
+    "release": "np"
   }
 }
