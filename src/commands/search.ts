@@ -1,6 +1,6 @@
-import chalk from 'chalk'
 import consola from 'consola'
 
+import { Gitmoji } from '../config'
 import getGitmojis from '../gitmojis'
 import parseLines from '../parseLines'
 

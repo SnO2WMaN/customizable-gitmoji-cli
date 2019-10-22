@@ -1,5 +1,7 @@
 import chalk from 'chalk'
 
+import { Gitmoji } from './config'
+
 export function parseLine(
   { emoji, code, description }: Gitmoji,
   longest: number

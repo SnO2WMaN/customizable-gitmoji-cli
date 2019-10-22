@@ -2,7 +2,15 @@ import cosmiconfig from 'cosmiconfig'
 
 const configExplorer = cosmiconfig('gitmoji', { cache: false })
 
-type Config = {
+export type Gitmoji = {
+  emoji: string
+  entity?: string // fix later
+  code: string
+  description: string
+  name: string
+}
+
+export type Configuration = {
   autoAdd: boolean
   emojiFormat: 'emoji' | 'code'
   signedCommit: boolean
@@ -13,7 +21,7 @@ type Config = {
   order: string[]
 }
 
-function validateGitmoji(value: unknown): value is Gitmoji {
+export function validateGitmoji(value: unknown): value is Gitmoji {
   if (typeof value === 'object' && value) {
     if (!('emoji' in value && 'name' in value && 'description' in value))
       return false
@@ -26,10 +34,10 @@ function validateGitmoji(value: unknown): value is Gitmoji {
   return false
 }
 
-function validate<T extends keyof Config>(
+export function validate<T extends keyof Configuration>(
   key: T,
   value: unknown
-): value is Config[T] {
+): value is Configuration[T] {
   // eslint-disable-next-line default-case
   switch (key) {
     case 'autoAdd':
@@ -54,10 +62,10 @@ function validate<T extends keyof Config>(
     case 'scopes':
       return Array.isArray(value) && value.every(v => typeof v === 'string')
   }
-  throw new Error(`The given config ${key} does not meet the conditions.`)
+  throw new TypeError(`The given config ${key} does not meet the conditions.`)
 }
 
-const defaultConfig: Config = {
+const defaultConfig: Configuration = {
   autoAdd: false,
   emojiFormat: 'code',
   signedCommit: false,
@@ -68,7 +76,7 @@ const defaultConfig: Config = {
   presets: 'base'
 }
 
-let cache: Config | undefined
+let cache: Configuration | undefined
 
 export async function saveConfig(searchFrom?: string) {
   const result = await configExplorer.search(searchFrom)

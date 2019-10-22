@@ -1,3 +1,4 @@
+import { Gitmoji } from '../config'
 import getGitmojis from '../gitmojis'
 import parseLines from '../parseLines'
 
