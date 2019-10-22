@@ -1,17 +1,21 @@
-Hello @carloscuesta!
+Hello @SnO2WMaN!
 
-<!-- Describe your issue here -->
+### Issue
 
-Issue:
+### Env
 
-<!-- What were you doing when the error/issue/bug appeared? Describe the steps to reproduce yor issue -->
+- **OS**:
+- **gitmoji-cli -v**:
+- **node -v**:
 
-**OS**:
-**gitmoji-cli -v**:
-**Node version**:
+### .gitmojirc
 
-<!-- If there's an error message copy the error here -->
+```json
 
-**Error Message**:
+```
 
-<!-- Screenshots -->
+### Error message
+
+```
+
+```
