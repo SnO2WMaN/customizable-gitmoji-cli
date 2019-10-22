@@ -1,4 +1,5 @@
 import cosmiconfig from 'cosmiconfig'
+import { isCorrectPresetName } from './gitmojis'
 
 const configExplorer = cosmiconfig('gitmoji', { cache: false })
 
@@ -51,7 +52,7 @@ export function validate<T extends keyof Configuration>(
     case 'presets':
       return (
         typeof value === 'string' ||
-        (Array.isArray(value) && value.every(v => typeof v === 'string'))
+        (Array.isArray(value) && value.every(isCorrectPresetName))
       )
     case 'rules':
       return Array.isArray(value) && value.every(v => validateGitmoji(v))

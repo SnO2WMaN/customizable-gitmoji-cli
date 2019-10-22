@@ -2,6 +2,16 @@
 
 import config from './config'
 
+type PresetName = string
+
+export function isCorrectPresetName(value: unknown): value is PresetName {
+  if (typeof value !== 'string') return false
+  if (value.startsWith('@')) return /^@.+\/gitmoji-preset(\/.+)?$/.test(value)
+  if (value.startsWith('gitmoji-preset'))
+    return /^gitmoji-preset-.+$/.test(value)
+  return /.+(\/.+)?/.test(value)
+}
+
 export default async function() {
   const { presets, rules, order } = await config()
 
