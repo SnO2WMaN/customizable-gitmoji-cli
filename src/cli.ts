@@ -11,7 +11,23 @@ import removeCommand from './commands/remove'
 
 update({ pkg }).notify()
 
-const cli = cac(pkg.name)
+const cli = cac('gitmoji')
+
+cli.command('init', 'Initialize gitmoji as a commit hook').action(initCommand)
+cli
+  .command('remove', 'Remove a previously initialized commit hook')
+  .action(removeCommand)
+
+cli
+  .command('commit', 'Interactively commit using the prompts')
+  .option('--hook', 'This option is used internally (DO NOT USE)')
+  .option(
+    '-c, --config <config>',
+    'Location of .gitmojirc (or gitmoji setting) file'
+  )
+  .action(async ({ config, hook }) => {
+    await commitCommand(config, hook || false)
+  })
 
 cli
   .command('list', 'List all the available gitmojis')
@@ -31,22 +47,6 @@ cli
   .action(async (query, { config }) => {
     await searchCommand(query, config)
   })
-
-cli
-  .command('commit', 'Interactively commit using the prompts')
-  .option('--hook', 'Option for git hook')
-  .option(
-    '-c, --config <config>',
-    'Location of .gitmojirc (or gitmoji setting) file'
-  )
-  .action(async ({ config, hook }) => {
-    await commitCommand(config, hook || false)
-  })
-
-cli.command('init', 'Initialize gitmoji as a commit hook').action(initCommand)
-cli
-  .command('remove', 'Remove a previously initialized commit hook')
-  .action(removeCommand)
 
 cli.version(pkg.version)
 cli.help()
