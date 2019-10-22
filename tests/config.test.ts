@@ -8,8 +8,8 @@ test('Validate config autoAdd', t => {
   t.true(validate('autoAdd', true))
   t.true(validate('autoAdd', false))
   // fail
-  t.false(validate('autoAdd', 1))
-  t.false(validate('autoAdd', 'yes'))
+  t.throws(() => validate('autoAdd', 1))
+  t.throws(() => validate('autoAdd', 'yes'))
 })
 
 test('Validate config emojiFormat', t => {
@@ -17,9 +17,9 @@ test('Validate config emojiFormat', t => {
   t.true(validate('emojiFormat', 'emoji'))
   t.true(validate('emojiFormat', 'code'))
   // fail
-  t.false(validate('emojiFormat', 'string'))
-  t.false(validate('emojiFormat', true))
-  t.false(validate('emojiFormat', 1))
+  t.throws(() => validate('emojiFormat', 'string'))
+  t.throws(() => validate('emojiFormat', true))
+  t.throws(() => validate('emojiFormat', 1))
 })
 
 test('Validate config signedCommit', t => {
@@ -27,8 +27,8 @@ test('Validate config signedCommit', t => {
   t.true(validate('signedCommit', true))
   t.true(validate('signedCommit', false))
   // fail
-  t.false(validate('signedCommit', 'string'))
-  t.false(validate('signedCommit', 1))
+  t.throws(() => validate('signedCommit', 'string'))
+  t.throws(() => validate('signedCommit', 1))
 })
 
 test('Validate config titleMaxLength', t => {
@@ -36,11 +36,11 @@ test('Validate config titleMaxLength', t => {
   t.true(validate('titleMaxLength', 48))
   t.true(validate('titleMaxLength', 64))
   // fail
-  t.false(validate('titleMaxLength', -1))
-  t.false(validate('titleMaxLength', 0))
-  t.false(validate('titleMaxLength', 100))
-  t.false(validate('titleMaxLength', 'string'))
-  t.false(validate('titleMaxLength', true))
+  t.throws(() => validate('titleMaxLength', -1))
+  t.throws(() => validate('titleMaxLength', 0))
+  t.throws(() => validate('titleMaxLength', 100))
+  t.throws(() => validate('titleMaxLength', 'string'))
+  t.throws(() => validate('titleMaxLength', true))
 })
 
 test('Validate config order', t => {
@@ -49,9 +49,9 @@ test('Validate config order', t => {
   t.true(validate('order', ['a', 'b']))
   t.true(validate('order', []))
   // fail
-  t.false(validate('order', [1, 2]))
-  t.false(validate('order', ['a', 2]))
-  t.false(validate('order', 'a'))
+  t.throws(() => validate('order', [1, 2]))
+  t.throws(() => validate('order', ['a', 2]))
+  t.throws(() => validate('order', 'a'))
 })
 
 test('Validate config scopes', t => {
@@ -60,9 +60,9 @@ test('Validate config scopes', t => {
   t.true(validate('scopes', ['a', 'b']))
   t.true(validate('scopes', []))
   // fail
-  t.false(validate('scopes', [1, 2]))
-  t.false(validate('scopes', ['a', 2]))
-  t.false(validate('scopes', 'a'))
+  t.throws(() => validate('scopes', [1, 2]))
+  t.throws(() => validate('scopes', ['a', 2]))
+  t.throws(() => validate('scopes', 'a'))
 })
 
 test('Validate config presets', t => {
@@ -72,8 +72,8 @@ test('Validate config presets', t => {
   t.true(validate('presets', ['sno2wman/oss']))
   t.true(validate('presets', []))
   // fail
-  t.false(validate('presets', true))
-  t.false(validate('presets', 2))
+  t.throws(() => validate('presets', true))
+  t.throws(() => validate('presets', 2))
 })
 
 test('Validate config gitmojis', t => {
@@ -103,8 +103,8 @@ test('Validate config gitmojis', t => {
   )
   t.true(validate('rules', []))
   // fail
-  t.false(validate('rules', ['a']))
-  t.false(validate('rules', true))
+  t.throws(() => validate('rules', ['a']))
+  t.throws(() => validate('rules', true))
 })
 
 test('Validate gitmoji', t => {

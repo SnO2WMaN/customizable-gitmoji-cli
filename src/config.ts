@@ -37,31 +37,38 @@ export function validate<T extends keyof Configuration>(
   key: T,
   value: unknown
 ): value is Configuration[T] {
-  // eslint-disable-next-line default-case
-  switch (key) {
-    case 'autoAdd':
-      return typeof value === 'boolean'
-    case 'emojiFormat':
-      return (
-        typeof value === 'string' && (value === 'emoji' || value === 'code')
-      )
-    case 'signedCommit':
-      return typeof value === 'boolean'
-    case 'titleMaxLength':
-      return typeof value === 'number' && value > 0 && value <= 72
-    case 'presets':
-      return (
-        typeof value === 'string' ||
-        (Array.isArray(value) && value.every(isCorrectPresetName))
-      )
-    case 'rules':
-      return Array.isArray(value) && value.every(v => validateGitmoji(v))
-    case 'order':
-      return Array.isArray(value) && value.every(v => typeof v === 'string')
-    case 'scopes':
-      return Array.isArray(value) && value.every(v => typeof v === 'string')
+  if (
+    !(() => {
+      switch (key) {
+        case 'autoAdd':
+          return typeof value === 'boolean'
+        case 'emojiFormat':
+          return (
+            typeof value === 'string' && (value === 'emoji' || value === 'code')
+          )
+        case 'signedCommit':
+          return typeof value === 'boolean'
+        case 'titleMaxLength':
+          return typeof value === 'number' && value > 0 && value <= 72
+        case 'presets':
+          return (
+            typeof value === 'string' ||
+            (Array.isArray(value) && value.every(isCorrectPresetName))
+          )
+        case 'rules':
+          return Array.isArray(value) && value.every(v => validateGitmoji(v))
+        case 'order':
+          return Array.isArray(value) && value.every(v => typeof v === 'string')
+        case 'scopes':
+          return Array.isArray(value) && value.every(v => typeof v === 'string')
+        default:
+          throw new Error(`The given key "${key}" is not config key.`)
+      }
+    })()
+  ) {
+    throw new TypeError(`The given config ${key} does not meet the conditions.`)
   }
-  throw new TypeError(`The given config ${key} does not meet the conditions.`)
+  return true
 }
 
 const defaultConfig: Configuration = {
