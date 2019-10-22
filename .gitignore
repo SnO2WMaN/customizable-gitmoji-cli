@@ -2,6 +2,7 @@
 *.log
 .env
 
+.nyc_output/
 node_modules/
 coverage/
 lib/

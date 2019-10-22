@@ -71,7 +71,7 @@
     "build": "rollup -c",
     "fmt": "prettier **/*.{js,json,yml,md} --write",
     "lint": "eslint src . --ext .js,.ts --fix",
-    "test": "ava",
+    "test": "nyc ava",
     "codecov": "codecov",
     "prerelease": "npm run build",
     "release": "np"
