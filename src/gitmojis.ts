@@ -1,4 +1,4 @@
-import config, { Gitmoji, validate } from './config'
+import config, { Gitmoji, validate, Configuration } from './config'
 
 type PresetName = string
 
@@ -16,9 +16,7 @@ export function parsePackageName(preset: PresetName): string {
   return `gitmoji-preset-${preset}`
 }
 
-export default async function() {
-  const { presets, rules, order } = await config()
-
+export default async function({ presets, rules, order }: Configuration) {
   const gitmojis: Gitmoji[] = []
   if (presets) {
     await Promise.all(

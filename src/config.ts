@@ -62,11 +62,11 @@ export function validate<T extends keyof Configuration>(
         case 'scopes':
           return Array.isArray(value) && value.every(v => typeof v === 'string')
         default:
-          throw new Error(`The given key "${key}" is not config key.`)
+          throw new TypeError(`The given key "${key}" is not config key.`)
       }
     })()
   ) {
-    throw new TypeError(`The given config ${key} does not meet the conditions.`)
+    throw new Error(`The given config ${key} does not meet the conditions.`)
   }
   return true
 }
@@ -82,9 +82,7 @@ const defaultConfig: Configuration = {
   presets: 'base'
 }
 
-let cache: Configuration | undefined
-
-export async function saveConfig(configPath?: string) {
+export default async function(configPath?: string) {
   const result = configPath
     ? await configExplorer.load(configPath)
     : await configExplorer.search()
@@ -108,7 +106,7 @@ export async function saveConfig(configPath?: string) {
     if (presets) validate('presets', presets)
     validate('scopes', scopes)
 
-    cache = {
+    return {
       autoAdd,
       emojiFormat,
       signedCommit,
@@ -118,12 +116,6 @@ export async function saveConfig(configPath?: string) {
       presets,
       scopes
     }
-    return cache
   }
   return defaultConfig
-}
-
-export default function() {
-  if (!cache) throw new Error('Something wrong.')
-  return cache
 }

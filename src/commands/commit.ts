@@ -5,23 +5,17 @@ import execa from 'execa'
 import fs from 'fs'
 import { promisify } from 'util'
 
-import config from '../config'
-import getGitmojis from '../gitmojis'
+import loadConfig from '../config'
+import loadGitmojis from '../gitmojis'
 
 const customScopeValue = 'CUSTOM_SCOPE'
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 
-export default async function(hook?: boolean) {
-  const gitmojis = await getGitmojis()
-  const {
-    emojiFormat,
-    titleMaxLength,
-    scopes,
-    signedCommit,
-    autoAdd
-  } = await config()
+export default async function(configPath?: string, hook?: boolean) {
+  const config = await loadConfig(configPath)
+  const gitmojis = await loadGitmojis(config)
 
   const { gitmoji: gitmojiAnswer } = await inquirer.prompt([
     {
@@ -42,7 +36,9 @@ export default async function(hook?: boolean) {
             .map(gitmoji => ({
               name: `${gitmoji.emoji}  - ${gitmoji.description}`,
               value:
-                emojiFormat === 'emoji' ? gitmoji.emoji : `:${gitmoji.name}:`
+                config.emojiFormat === 'emoji'
+                  ? gitmoji.emoji
+                  : `:${gitmoji.name}:`
             }))
         )
       }
@@ -54,7 +50,7 @@ export default async function(hook?: boolean) {
       message: 'Choose a scope:',
       type: 'list',
       choices: [
-        ...scopes,
+        ...config.scopes,
         new inquirer.Separator(),
         { name: 'Custom scope.', value: customScopeValue },
         { name: 'No scope.', value: null }
@@ -79,7 +75,8 @@ export default async function(hook?: boolean) {
         !title || title.includes('`')
           ? chalk.red('Enter a valid commit title')
           : true,
-      transformer: input => `[${input.length}/${titleMaxLength}]: ${input}`
+      transformer: input =>
+        `[${input.length}/${config.titleMaxLength}]: ${input}`
     },
     {
       name: 'message',
@@ -104,8 +101,8 @@ export default async function(hook?: boolean) {
   } else {
     const commits = ['commit', '-m', commitTitle]
     if (commitBody) commits.push('-m', commitBody)
-    if (signedCommit) commits.push('-S')
-    if (autoAdd)
+    if (config.signedCommit) commits.push('-S')
+    if (config.autoAdd)
       await execa('git', ['add', '.'])
         .then(() => execa('git', commits))
         .then(responce => consola.info(chalk.blue(responce.stdout)))

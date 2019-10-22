@@ -9,8 +9,6 @@ import search from './commands/search'
 import init from './commands/init'
 import remove from './commands/remove'
 
-import { saveConfig } from './config'
-
 update({ pkg }).notify()
 
 const cli = cac(pkg.name)
@@ -22,8 +20,7 @@ cli
     'Location of .gitmojirc (or gitmoji setting) file'
   )
   .action(async ({ config }) => {
-    await saveConfig(config)
-    await list()
+    await list(config)
   })
 cli
   .command('search [query]', 'Search gitmojis')
@@ -31,9 +28,8 @@ cli
     '-c, --config <config>',
     'Location of .gitmojirc (or gitmoji setting) file'
   )
-  .action(async ({ config }) => {
-    await saveConfig(config)
-    await search()
+  .action(async (query, { config }) => {
+    await search(query, config)
   })
 
 cli
@@ -44,8 +40,7 @@ cli
     'Location of .gitmojirc (or gitmoji setting) file'
   )
   .action(async ({ config, hook }) => {
-    await saveConfig(config)
-    await commit(hook || false)
+    await commit(config, hook || false)
   })
 
 cli.command('init', 'Initialize gitmoji as a commit hook').action(init)

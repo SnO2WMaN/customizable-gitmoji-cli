@@ -1,5 +1,5 @@
-import { Gitmoji } from '../config'
-import getGitmojis from '../gitmojis'
+import loadConfig, { Gitmoji } from '../config'
+import loadGitmojis from '../gitmojis'
 import parseLines from '../parseLines'
 
 export function list(array: Gitmoji[]) {
@@ -8,6 +8,6 @@ export function list(array: Gitmoji[]) {
   if (lines) lines.forEach(line => console.log(line))
 }
 
-export default async function() {
-  list(await getGitmojis())
+export default async function(configPath?: string) {
+  list(await loadGitmojis(await loadConfig(configPath)))
 }

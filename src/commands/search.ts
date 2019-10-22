@@ -1,7 +1,7 @@
 import consola from 'consola'
 
-import { Gitmoji } from '../config'
-import getGitmojis from '../gitmojis'
+import loadConfig, { Gitmoji } from '../config'
+import loadGitmojis from '../gitmojis'
 import parseLines from '../parseLines'
 
 export function search(array: Gitmoji[], query?: string) {
@@ -23,6 +23,6 @@ export function search(array: Gitmoji[], query?: string) {
   return false
 }
 
-export default async function(query?: string) {
-  search(await getGitmojis(), query)
+export default async function(query?: string, configPath?: string) {
+  search(await loadGitmojis(await loadConfig(configPath)), query)
 }
