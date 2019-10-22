@@ -164,6 +164,7 @@ gitmoji プロンプトをマニュアルで実行します。
   "order": [
     "ok_hand"
   ],
+  "scopes": ["frontend", "backend"]
 }
 ```
 
@@ -223,6 +224,16 @@ gitmoji を定義します。以下のように記載してください。
 ### `order`
 
 順序を指定します。指定された gitmoji はより優先されます。
+
+### `scopes`
+
+選択できるスコープを列挙します。スコープを指定した場合、以下のようなコミットメッセージになります。
+
+```
+📷(scope) commit message.
+
+:camera:(scope) commit message.
+```
 
 ## Contributors 👥
 
