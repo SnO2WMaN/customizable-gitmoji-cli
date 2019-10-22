@@ -30,7 +30,15 @@
 
 <p>
 <div align="center">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+<!-- prettier-ignore-start -->
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#貢献者の方々-)
+
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!-- prettier-ignore-end -->
+
 </div>
 </p>
 
@@ -216,7 +224,7 @@ gitmoji を定義します。以下のように記載してください。
 
 順序を指定します。指定された gitmoji はより優先されます。
 
-## 貢献者の方々 👥
+## Contributors 👥
 
 以下の方々には感謝しかありません ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
