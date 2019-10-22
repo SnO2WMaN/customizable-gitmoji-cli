@@ -1,7 +1,7 @@
 import test from 'ava'
 
 import { validate, validateGitmoji } from '~/config'
-import { isCorrectPresetName } from '~/gitmojis'
+import { isCorrectPresetName, parsePackageName } from '~/gitmojis'
 
 test('Validate config autoAdd', t => {
   // success
@@ -148,4 +148,16 @@ test('Validate preset name', t => {
   t.false(isCorrectPresetName('@sno2wman'))
   t.false(isCorrectPresetName('@sno2wman'))
   t.false(isCorrectPresetName('gitmoji-preset'))
+})
+
+test('Validate parsing preset name to package name', t => {
+  // success
+  t.is(parsePackageName('@sno2wman/gitmoji-preset'), '@sno2wman/gitmoji-preset')
+  t.is(
+    parsePackageName('@sno2wman/gitmoji-preset/oss'),
+    '@sno2wman/gitmoji-preset/oss'
+  )
+  t.is(parsePackageName('gitmoji-preset-base'), 'gitmoji-preset-base')
+  t.is(parsePackageName('base'), 'gitmoji-preset-base')
+  t.is(parsePackageName('base/oss'), 'gitmoji-preset-base/oss')
 })
