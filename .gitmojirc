@@ -64,6 +64,11 @@
       "name": "lock"
     },
     {
+      "emoji": "🚥",
+      "description": "Resolve Linter warning.",
+      "name": "traffic_light"
+    },
+    {
       "emoji": "🚧",
       "description": "Work in progress.",
       "name": "construction"
