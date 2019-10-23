@@ -158,14 +158,16 @@ test('Validate preset name', t => {
 
 test('Validate parsing preset name to package name', t => {
   // success
-  t.is(parsePackageName('@sno2wman/gitmoji-preset'), '@sno2wman/gitmoji-preset')
-  t.is(
-    parsePackageName('@sno2wman/gitmoji-preset/oss'),
-    '@sno2wman/gitmoji-preset/oss'
-  )
-  t.is(parsePackageName('gitmoji-preset-base'), 'gitmoji-preset-base')
-  t.is(parsePackageName('base'), 'gitmoji-preset-base')
-  t.is(parsePackageName('base/oss'), 'gitmoji-preset-base/oss')
+  t.deepEqual(parsePackageName('@sno2wman/gitmoji-preset'), [
+    '@sno2wman/gitmoji-preset'
+  ])
+  t.deepEqual(parsePackageName('@sno2wman/gitmoji-preset/oss'), [
+    '@sno2wman/gitmoji-preset',
+    'oss'
+  ])
+  t.deepEqual(parsePackageName('gitmoji-preset-base'), ['gitmoji-preset-base'])
+  t.deepEqual(parsePackageName('base'), ['gitmoji-preset-base'])
+  t.deepEqual(parsePackageName('base/oss'), ['gitmoji-preset-base', 'oss'])
 })
 
 test('Correct gitmojirc', async t => {
