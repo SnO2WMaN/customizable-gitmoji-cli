@@ -7,5 +7,13 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "rules": { "@typescript-eslint/no-magic-numbers": [1, { "ignore": [0, 1] }] }
+  "rules": {
+    "@typescript-eslint/no-magic-numbers": [
+      1,
+      {
+        "ignoreArrayIndexes": true,
+        "ignore": [0, 1]
+      }
+    ]
+  }
 }
