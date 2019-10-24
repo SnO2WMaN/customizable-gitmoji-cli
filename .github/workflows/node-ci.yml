@@ -3,7 +3,7 @@ name: Node CI
 on: [push]
 
 jobs:
-  test:
+  each-test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -26,5 +26,6 @@ jobs:
           CI: true
       - name: Codecov
         run: npx codecov
+        if: startsWith(matrix.node-version, 12)
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
