@@ -10,7 +10,7 @@
 <p>
 <div align="center">
 
-[![CircleCI](https://circleci.com/gh/SnO2WMaN/customizable-gitmoji-cli.svg?style=svg)](https://circleci.com/gh/SnO2WMaN/customizable-gitmoji-cli)
+[![Github Action](https://github.com/SnO2WMaN/customizable-gitmoji-cli/workflows/Node%20CI/badge.svg)](https://github.com/SnO2WMaN/customizable-gitmoji-cli/actions)
 [![codecov](https://codecov.io/gh/SnO2WMaN/customizable-gitmoji-cli/branch/master/graph/badge.svg)](https://codecov.io/gh/SnO2WMaN/customizable-gitmoji-cli)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2cff863272e7a47dd100/maintainability)](https://codeclimate.com/github/SnO2WMaN/customizable-gitmoji-cli/maintainability)
 
