@@ -74,7 +74,6 @@
     "fmt": "prettier **/*.{js,json,yml,md} --write",
     "lint": "eslint src . --ext .js,.ts --fix",
     "test": "nyc ava",
-    "codecov": "codecov",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "prerelease": "npm run build",
