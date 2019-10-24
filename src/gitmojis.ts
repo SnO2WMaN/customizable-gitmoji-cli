@@ -1,3 +1,4 @@
+import fs from 'fs-extra'
 import consola from 'consola'
 import path from 'path'
 import chalk from 'chalk'
@@ -19,13 +20,16 @@ export function parsePackageName(preset: string): string[] {
 export default async function({ presets, rules, order }: Configuration) {
   const gitmojis: Gitmoji[] = []
   if (presets) {
-    const presetPaths = (Array.isArray(presets) ? presets : [presets]).map(
-      preset =>
-        path.resolve(process.cwd(), 'node_modules', ...parsePackageName(preset))
-    )
-    console.log(presetPaths)
     await Promise.all(
-      presetPaths.map(async presetPath => {
+      (Array.isArray(presets) ? presets : [presets]).map(async preset => {
+        let presetPath = path.resolve(
+          process.cwd(),
+          'node_modules',
+          ...parsePackageName(preset)
+        )
+        if (preset === 'base' && !(await fs.pathExists(presetPath))) {
+          presetPath = 'gitmoji-presets-base'
+        }
         const { default: gitmojisOutput } = await import(presetPath)
         if (validate('rules', gitmojisOutput)) {
           gitmojis.push(...gitmojisOutput)
