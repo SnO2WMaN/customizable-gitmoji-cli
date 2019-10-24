@@ -23,6 +23,7 @@ export default async function({ presets, rules, order }: Configuration) {
       preset =>
         path.resolve(process.cwd(), 'node_modules', ...parsePackageName(preset))
     )
+    console.log(presetPaths)
     await Promise.all(
       presetPaths.map(async presetPath => {
         const { default: gitmojisOutput } = await import(presetPath)

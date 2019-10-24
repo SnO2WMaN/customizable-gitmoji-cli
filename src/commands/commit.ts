@@ -2,8 +2,7 @@ import inquirer from 'inquirer'
 import chalk from 'chalk'
 import consola from 'consola'
 import execa from 'execa'
-import fs from 'fs'
-import { promisify } from 'util'
+import fs from 'fs-extra'
 
 import loadConfig from '../config'
 import loadGitmojis from '../gitmojis'
@@ -91,10 +90,7 @@ export default async function(configPath?: string, hook?: boolean) {
   const commitBody = `${messageAnswer}`
   if (hook) {
     try {
-      await promisify(fs.writeFile)(
-        process.argv[4], // eslint-disable-line @typescript-eslint/no-magic-numbers
-        `${commitTitle}\n\n${commitBody}`
-      )
+      await fs.writeFile(process.argv[4], `${commitTitle}\n\n${commitBody}`)
     } catch (error) {
       consola.error(error)
     }
