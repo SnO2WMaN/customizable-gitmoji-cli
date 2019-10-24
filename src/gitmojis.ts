@@ -28,7 +28,7 @@ export default async function({ presets, rules, order }: Configuration) {
           ...parsePackageName(preset)
         )
         if (preset === 'base' && !(await fs.pathExists(presetPath))) {
-          presetPath = 'gitmoji-presets-base'
+          presetPath = 'gitmoji-preset-base'
         }
         const { default: gitmojisOutput } = await import(presetPath)
         if (validate('rules', gitmojisOutput)) {
