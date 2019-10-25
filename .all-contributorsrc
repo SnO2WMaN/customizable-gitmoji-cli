@@ -28,6 +28,13 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/7629661?v=4",
       "profile": "https://carloscuesta.me",
       "contributions": ["ideas"]
+    },
+    {
+      "login": "0918nobita",
+      "name": "0918nobita",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/8453302?v=4",
+      "profile": "https://twitter.com/0918nobita",
+      "contributions": ["bug", "security"]
     }
   ],
   "contributorsPerLine": 7
