@@ -16,12 +16,20 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm ci, lint, test, build
-        run: |
-          npm ci
-          npm run lint
-          npm run test
-          npm run build
+      - name: install
+        run: npm ci
+        env:
+          CI: true
+      - name: lint
+        run: npm run lint
+        env:
+          CI: true
+      - name: test
+        run: npm run test
+        env:
+          CI: true
+      - name: build
+        run: npm run build
         env:
           CI: true
       - name: Codecov
