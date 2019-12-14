@@ -17,9 +17,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: install
-        run: npm ci
-        env:
-          CI: true
+        uses: sergioramos/yarn-actions/install@master
+        with:
+          frozen-lockfile: true
       - name: lint
         run: npm run lint
         env:
