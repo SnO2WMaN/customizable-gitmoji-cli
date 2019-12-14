@@ -1,1 +1,6 @@
-"@conten2/prettier-config"
+{
+  "semi": false,
+  "singleQuote": true,
+  "useTabs": false,
+  "tabWidth": 2
+}
