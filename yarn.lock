@@ -335,6 +335,11 @@
   dependencies:
     gitmoji-preset-dependencies "^1.0.1"
 
+"@sno2wman/prettier-config@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@sno2wman/prettier-config/-/prettier-config-1.0.2.tgz#e70c150cfe319d3cba2d62c29537e3e882df1fde"
+  integrity sha512-u4FQaVOutuoXoggzXaYFZ+6ZE1DLbxsufHoDU3ctlwnnd2wz+5UnA9PNNI5jGh7Q+NSrwjLl1aJA/2KJD6Nm1Q==
+
 "@sno2wman/prettier-package-json@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@sno2wman/prettier-package-json/-/prettier-package-json-2.0.2.tgz#79627abef54173b92483a1a181cb26b1d3f45476"

@@ -1,6 +1,1 @@
-{
-  "semi": false,
-  "singleQuote": true,
-  "useTabs": false,
-  "tabWidth": 2
-}
+"@sno2wman/prettier-config"

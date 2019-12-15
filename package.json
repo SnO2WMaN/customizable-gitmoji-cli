@@ -34,6 +34,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@sno2wman/gitmoji-preset": "^1.0.1",
+    "@sno2wman/prettier-config": "^1.0.2",
     "@sno2wman/prettier-package-json": "^2.0.2",
     "@types/cosmiconfig": "^5.0.3",
     "@types/fs-extra": "^8.0.1",
