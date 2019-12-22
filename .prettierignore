@@ -1,6 +1,9 @@
 node_modules/
-coverage/
-lib/
-gitmoji/
 
-package-lock.json
+dist/
+lib/
+
+coverage/
+snapshots/
+
+.nyc_output/

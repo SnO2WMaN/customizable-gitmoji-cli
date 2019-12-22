@@ -1,8 +1,12 @@
-.DS_Store
-*.log
+node_modules/
+
+dist/
+lib/
+
+coverage/
+
 .env
+*.log
+*.cache
 
 .nyc_output/
-node_modules/
-coverage/
-lib/

@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ES6",
     "module": "commonjs",
+    "lib": ["ESNext"],
     "strict": true,
-    "allowJs": true,
-    "moduleResolution": "node",
+    "sourceMap": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "outDir": "lib",
     "baseUrl": ".",
+    "sourceRoot": "src",
+    "outDir": "lib",
     "paths": {
-      "~/*": ["src/*"],
-      "~~/*": ["*"]
+      "~/*": ["src/*"]
     }
-  }
+  },
+  "exclude": ["lib"]
 }

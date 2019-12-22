@@ -1,4 +1,9 @@
 node_modules/
-coverage/
+
+dist/
 lib/
-gitmoji/
+
+coverage/
+snapshots/
+
+.nyc_output/

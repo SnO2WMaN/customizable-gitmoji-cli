@@ -1,5 +1,5 @@
 {
-  "name": "customizable-gitmoji-cli",
+  "name": "cz-gitmoji-cli",
   "description": "Customizable gitmoji cli",
   "license": "MIT",
   "author": "SnO2WMaN <sno2wman.official@gmail.com> (https://sno2wman.dev)",
@@ -13,10 +13,10 @@
   },
   "version": "1.0.2",
   "bin": {
-    "gitmoji": "lib/cli.js"
+    "cz-gitmoji": "lib/index.js"
   },
   "files": [
-    "lib/cli.js"
+    "lib"
   ],
   "dependencies": {
     "cac": "^6.5.3",
@@ -48,12 +48,14 @@
     "all-contributors-cli": "^6.9.3",
     "ava": "^2.4.0",
     "codecov": "^3.6.1",
+    "cpx": "^1.5.0",
     "eslint": "^6.5.1",
     "husky": "^3.0.8",
     "lint-staged": "^9.4.1",
     "np": "^5.1.1",
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
     "rollup": "^1.23.1",
     "rollup-plugin-add-shebang": "^0.3.1",
     "rollup-plugin-json": "^4.0.0",
@@ -72,7 +74,9 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "rollup -c",
+    "prebuild": "rimraf lib",
+    "build": "tsc",
+    "postbuild": "cpx 'lib/src/**' lib && rimraf lib/{src,test}",
     "fmt": "prettier **/*.{js,json,yml,md} --write",
     "lint": "eslint src . --ext .js,.ts --fix",
     "test": "nyc ava",

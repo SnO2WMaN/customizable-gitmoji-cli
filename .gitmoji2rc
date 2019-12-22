@@ -1,0 +1,55 @@
+{
+  "version": 2,
+  "common": {
+    "scopes": [
+      {
+        "name": "wip",
+        "description": "Working in progress"
+      }
+    ]
+  },
+  "gitmojis": [
+    {
+      "emoji": "✨",
+      "description": "Introduce new features.",
+      "name": "sparkles",
+      "tags": [
+        "feat"
+      ]
+    },
+    {
+      "emoji": "👷",
+      "description": "Maintain infrastructure.",
+      "name": "construction_worker",
+      "tags": [
+        "infra",
+        "ci"
+      ],
+      "scopes": [
+        {
+          "name": "renovate",
+          "description": "About Renovate Bot"
+        },
+        {
+          "name": "github actions",
+          "description": "About Github Action"
+        }
+      ]
+    },
+    {
+      "emoji": "🔧",
+      "description": "Update configurations.",
+      "name": "wrench",
+      "tags": [
+        "config",
+        "setting"
+      ],
+      "scopes": [
+        {
+          "name": "eslint",
+          "description": "About ESLint"
+        }
+      ]
+    }
+  ]
+}
