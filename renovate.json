@@ -1,3 +1,7 @@
 {
-  "extends": ["github>conten2/renovate"]
+  "extends": [
+    "github>sno2wman/renovate-config",
+    ":timezone(Asia/Tokyo)",
+    "schedule:weekly"
+  ]
 }
