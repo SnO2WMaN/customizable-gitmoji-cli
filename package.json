@@ -30,6 +30,7 @@
     "gitmoji-preset-base": "^1.0.2",
     "inquirer": "^7.0.0",
     "inquirer-autocomplete-prompt": "^1.0.1",
+    "ora": "^4.0.3",
     "update-notifier": "^4.0.0"
   },
   "devDependencies": {

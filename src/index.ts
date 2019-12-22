@@ -22,6 +22,16 @@ cli.command('list', 'List all the available gitmojis').action(async () => {
   await commands.list(await getConfig())
 })
 
+cli.command('init', 'Initialize gitmoji as a commit hook').action(async () => {
+  await commands.init()
+})
+
+cli
+  .command('remove', 'Remove a previously initialized commit hook')
+  .action(async () => {
+    await commands.remove()
+  })
+
 cli.version(package_.version)
 cli.help()
 cli.parse()
