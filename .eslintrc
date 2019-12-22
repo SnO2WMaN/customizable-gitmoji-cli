@@ -1,43 +1,24 @@
 {
   "root": true,
   "extends": [
-    "plugin:eslint-comments/recommended",
-    "plugin:unicorn/recommended",
-    "plugin:promise/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "eslint:recommended",
-    "standard-with-typescript",
-    "prettier",
-    "prettier/unicorn",
-    "prettier/@typescript-eslint"
+    "@sno2wman/eslint-config-typescript",
+    "@sno2wman/eslint-config/+ava"
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
   "settings": {
     "import/resolver": {
-      "alias": {
-        "map": [["~", "./src/"]],
-        "extensions": [".ts", ".js", ".jsx", ".json"]
+      "typescript": {
+        "alwaysTryTypes": true
       }
     }
   },
   "rules": {
-    "no-console": 1,
-    "yoda": [2, "never", { "onlyEquality": true }],
-    "@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/no-non-null-assertion": 1,
+    "import/extensions": 0,
     "unicorn/filename-case": [
       2,
-      {
-        "cases": { "camelCase": true }
-      }
-    ],
-    "promise/always-return": [1]
+      { "cases": { "pascalCase": true, "camelCase": true } }
+    ]
   }
 }
