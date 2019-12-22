@@ -24,6 +24,7 @@
     "conf": "^6.1.0",
     "consola": "^2.10.1",
     "cosmiconfig": "^5.2.1",
+    "cz-gitmoji-config-parser": "^0.0.1-2",
     "execa": "^3.0.0",
     "fs-extra": "^8.1.0",
     "gitmoji-preset-base": "^1.0.2",
