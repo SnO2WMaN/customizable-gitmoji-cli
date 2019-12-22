@@ -19,6 +19,11 @@
     "unicorn/filename-case": [
       2,
       { "cases": { "pascalCase": true, "camelCase": true } }
+    ],
+    "unicorn/no-process-exit": 0,
+    "@typescript-eslint/restrict-template-expressions": [
+      2,
+      { "allowNumber": true }
     ]
   }
 }
