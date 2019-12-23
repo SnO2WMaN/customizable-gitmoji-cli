@@ -32,6 +32,13 @@ cli
     await commands.remove()
   })
 
+cli
+  .command('commit', 'Interactively commit using the prompts')
+  .option('--hook', 'DO NOT USE')
+  .action(async ({ hook }) => {
+    await commands.commit(await getConfig(), hook ?? false)
+  })
+
 cli.version(package_.version)
 cli.help()
 cli.parse()
