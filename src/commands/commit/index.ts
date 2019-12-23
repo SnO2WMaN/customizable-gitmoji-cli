@@ -20,7 +20,7 @@ export default async (config: GitmojiConfig, hook: boolean) => {
         type: 'autocomplete',
         source: (_: any, input?: string) =>
           Promise.resolve(
-            (input === '' ? config.search(input) : config.list()).map(
+            (input && input !== '' ? config.search(input) : config.list()).map(
               ({ emoji, name, description, tags }) => ({
                 name: [
                   emoji,
