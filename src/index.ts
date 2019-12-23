@@ -14,7 +14,7 @@ updateNotifier({ pkg: package_ }).notify()
 const cli = cac('cz-gitmoji')
 
 async function getConfig() {
-  const result = await cosmiconfig('gitmoji2', { cache: false }).search()
+  const result = await cosmiconfig('gitmoji', { cache: false }).search()
   return parser(result?.config ?? {})
 }
 
