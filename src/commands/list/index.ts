@@ -36,7 +36,9 @@ export default async function(config: GitmojiConfig) {
           chalk.blue(`(${scopeName})`),
           ' '.repeat(longestScope - scopeName.length),
           ' ',
-          chalk.grey(scopeDescription)
+          scopeDescription === ''
+            ? chalk.grey('No description')
+            : chalk.blue(scopeDescription)
         ].join('')
       )
     })
