@@ -65,7 +65,7 @@
   "scripts": {
     "prebuild": "rimraf lib",
     "build": "tsc",
-    "postbuild": "cpx 'lib/src/**' lib && rimraf lib/{src,test}",
+    "postbuild": "cpx 'lib/src/**' lib && rimraf lib/{src,test} lib/package.json",
     "fmt": "prettier **/*.{js,json,yml,md} --write",
     "lint": "eslint src . --ext .js,.ts --fix",
     "test": "nyc ava",
