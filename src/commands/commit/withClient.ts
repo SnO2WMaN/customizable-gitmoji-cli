@@ -8,7 +8,7 @@ export default async (config: GitmojiConfig, title: string) => {
       'commit',
       ...(config.signedCommit ? ['-S'] : []),
       '-m',
-      `"${title}"`
+      `${title}`
     ])
     console.log(stdout)
   } catch (error) {
