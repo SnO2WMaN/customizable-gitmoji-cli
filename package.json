@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "cac": "^6.5.3",
-    "chalk": "^2.4.1",
+    "chalk": "^3.0.0",
     "cosmiconfig": "^5.2.1",
     "cz-gitmoji-config-parser": "^0.0.1-8",
     "execa": "^3.0.0",
