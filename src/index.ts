@@ -2,7 +2,7 @@
 
 import cac from 'cac'
 import updateNotifier from 'update-notifier'
-import cosmiconfig from 'cosmiconfig'
+import { cosmiconfig } from 'cosmiconfig'
 import parser from 'cz-gitmoji-config-parser'
 
 import package_ from '../package.json'
