@@ -1623,10 +1623,10 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-cz-gitmoji-config-parser@^0.0.1-8:
-  version "0.0.1-8"
-  resolved "https://registry.yarnpkg.com/cz-gitmoji-config-parser/-/cz-gitmoji-config-parser-0.0.1-8.tgz#4a7fd46e818051c37678eaa5699ffeeb7cd8de84"
-  integrity sha512-blWGPuN9TpAcZCjhr4VabMu2VnrNgoKGh0LJl90R0+MByCXEpaRT4q3G1DcfODMUwuu4QndCms5cqEjFhx5cIg==
+cz-gitmoji-config-parser@^0.0.1-9:
+  version "0.0.1-9"
+  resolved "https://registry.yarnpkg.com/cz-gitmoji-config-parser/-/cz-gitmoji-config-parser-0.0.1-9.tgz#c7caf9fbb4efa2e27c816a324b47eee4a66d96da"
+  integrity sha512-KDnn12j04RIXsPpHe3zNscmza7m9XPVJ+zTudTm4FSIqDGESAM1oWcHrYNv4VbLw3MNqhHooFRmhfk+n0QtbbA==
 
 dashdash@^1.12.0:
   version "1.14.1"
