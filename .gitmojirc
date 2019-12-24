@@ -62,13 +62,23 @@
         "setting"
       ],
       "scopes": [
-        "eslint"
+        "eslint",
+        "stylelint",
+        "prettier",
+        "lint-staged",
+        "husky",
+        "gitmoji",
+        "typescript"
       ]
     },
     {
       "emoji": "🎨",
       "description": "Update UI/UX.",
-      "name": "art"
+      "name": "art",
+      "tags": [
+        "ui",
+        "ux"
+      ]
     },
     {
       "emoji": "🔥",
@@ -81,47 +91,67 @@
     {
       "emoji": "🚨",
       "description": "Add/Update tests.",
-      "name": "warning"
+      "name": "warning",
+      "tags": [
+        "test"
+      ]
     },
     {
       "emoji": "🏗",
       "description": "Update structures.",
-      "name": "building_construction"
+      "name": "building_construction",
+      "tags": [
+        "structure"
+      ]
     },
     {
       "emoji": "🔒",
       "description": "Update security.",
-      "name": "lock"
+      "name": "lock",
+      "tags": [
+        "security"
+      ]
     },
     {
       "emoji": "🚥",
       "description": "Resolve Linter warning.",
-      "name": "traffic_light"
+      "name": "traffic_light",
+      "tags": [
+        "lint"
+      ]
     },
     {
       "emoji": "🚧",
       "description": "Work in progress.",
-      "name": "construction"
+      "name": "construction",
+      "tags": [
+        "wip"
+      ]
     },
     {
       "emoji": "⚓️",
       "description": "Salvage old features.",
-      "name": "anchor"
+      "name": "anchor",
+      "tags": [
+        "salvage"
+      ]
     },
     {
       "emoji": "💥",
       "description": "make a breaking change.",
-      "name": "boom"
+      "name": "boom",
+      "tags": [
+        "breaking"
+      ]
     },
     {
       "emoji": "🧪",
       "description": "Add experimental features.",
-      "name": "test_tube"
-    },
-    {
-      "emoji": "🗑",
-      "description": "Deprecate functions.",
-      "name": "wastebasket"
+      "name": "test_tube",
+      "tags": [
+        "beta",
+        "experimental"
+      ]
     },
     {
       "emoji": "👷",
@@ -132,6 +162,7 @@
         "ci"
       ],
       "scopes": [
+        "circle ci",
         "renovate",
         "github actions"
       ]
@@ -139,37 +170,75 @@
     {
       "emoji": "🌐",
       "description": "Translate.",
-      "name": "globe_with_meridians"
+      "name": "globe_with_meridians",
+      "tags": [
+        "translate",
+        "i18n",
+        "l10n"
+      ],
+      "scopes": [
+        {
+          "name": "ja",
+          "description": "Japanese"
+        },
+        {
+          "name": "en",
+          "description": "English"
+        }
+      ]
     },
     {
       "emoji": "📖",
       "description": "Write docs.",
-      "name": "open_book"
+      "name": "open_book",
+      "tags": [
+        "docs",
+        "readme"
+      ]
     },
     {
       "emoji": "💬",
       "description": "Update literal or text.",
-      "name": "speech_balloon"
+      "name": "speech_balloon",
+      "tags": [
+        "text",
+        "literal"
+      ]
     },
     {
       "emoji": "🚚",
       "description": "Transfer files.",
-      "name": "truck"
+      "name": "truck",
+      "tags": [
+        "move"
+      ]
     },
     {
       "emoji": "🍱",
       "description": "Add assets.",
-      "name": "bento"
+      "name": "bento",
+      "tags": [
+        "assets",
+        "images"
+      ]
     },
     {
       "emoji": "📷",
       "description": "Update snapshots.",
-      "name": "camera"
+      "name": "camera",
+      "tags": [
+        "snapshots",
+        "test"
+      ]
     },
     {
       "emoji": "🧹",
       "description": "Format codes.",
-      "name": "bloom"
+      "name": "bloom",
+      "tags": [
+        "format",
+        "prettier"
+      ]
     },
     {
       "emoji": "⬆️",
@@ -219,52 +288,87 @@
     {
       "emoji": "🆗",
       "description": "OK for the review.",
-      "name": "ok"
+      "name": "ok",
+      "tags": [
+        "review"
+      ]
     },
     {
       "emoji": "⏪",
       "description": "Revert changes.",
-      "name": "rewind"
+      "name": "rewind",
+      "tags": [
+        "rewind"
+      ]
     },
     {
       "emoji": "🔀",
       "description": "Merge branches.",
-      "name": "twisted_rightwards_arrows"
+      "name": "twisted_rightwards_arrows",
+      "tags": [
+        "merge"
+      ]
     },
     {
       "emoji": "📄",
       "description": "Attach a license.",
-      "name": "page_facing_up"
+      "name": "page_facing_up",
+      "tags": [
+        "license"
+      ]
     },
     {
       "emoji": "🔖",
       "description": "Release.",
-      "name": "bookmark"
+      "name": "bookmark",
+      "tags": [
+        "version"
+      ]
     },
     {
       "emoji": "🚀",
       "description": "Deploy.",
-      "name": "rocket"
+      "name": "rocket",
+      "tags": [
+        "deploy"
+      ]
     },
     {
       "emoji": "🙈",
       "description": "Ignore things.",
-      "name": "see_no_evil"
+      "name": "see_no_evil",
+      "tags": [
+        "ignore"
+      ]
     },
     {
       "emoji": "👥",
       "description": "Add a contributor.",
-      "name": "busts_in_silhouette"
+      "name": "busts_in_silhouette",
+      "tags": [
+        "contributor"
+      ]
     },
     {
       "emoji": "💵",
       "description": "Add financial things.",
-      "name": "dollar"
+      "name": "dollar",
+      "tags": [
+        "funding"
+      ]
+    },
+    {
+      "emoji": "🔺",
+      "description": "Use as a commit separator.",
+      "name": "small_red_triangle"
     },
     {
       "emoji": "🎉",
       "description": "Init.",
-      "name": "tada"
+      "name": "tada",
+      "tags": [
+        "init"
+      ]
     }
   ]
 }
