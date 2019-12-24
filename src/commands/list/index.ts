@@ -10,6 +10,7 @@ export default async function(config: GitmojiConfig) {
     (c, { description }) => Math.max(c, description.length),
     0
   )
+  const separator = ` ${chalk.grey('│')} `
   list.forEach(({ emoji, name, description, tags, scopes }) => {
     console.log(
       [
@@ -17,11 +18,13 @@ export default async function(config: GitmojiConfig) {
         ' '.repeat(2),
         chalk.bold.cyan(`:${name}:`),
         ' '.repeat(longestName - name.length),
-        '│ ',
+        separator,
         description,
         ' '.repeat(longestDescription - description.length),
-        '│ ',
-        tags.map(tag => chalk.italic.black.bgCyanBright(` ${tag} `)).join(' ')
+        separator,
+        tags.length === 0
+          ? chalk.italic.grey('None')
+          : tags.map(tag => chalk.italic.blue(`${tag}`)).join(', ')
       ].join('')
     )
     const longestScope = scopes.reduce(
@@ -35,10 +38,10 @@ export default async function(config: GitmojiConfig) {
           '─ ',
           chalk.blue(`(${scopeName})`),
           ' '.repeat(longestScope - scopeName.length),
-          ' ',
+          separator,
           scopeDescription === ''
             ? chalk.grey('No description')
-            : chalk.blue(scopeDescription)
+            : chalk.white(scopeDescription)
         ].join('')
       )
     })
