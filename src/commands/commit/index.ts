@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import inquirer from 'inquirer'
-import { GitmojiConfig } from 'cz-gitmoji-config-parser'
+import { GitmojiConfig } from 'customizable-gitmoji-config-parser'
 
 import withClient from './withClient'
 import withHook from './withHook'

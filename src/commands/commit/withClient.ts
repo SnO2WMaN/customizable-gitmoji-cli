@@ -1,5 +1,5 @@
 import execa from 'execa'
-import { GitmojiConfig } from 'cz-gitmoji-config-parser'
+import { GitmojiConfig } from 'customizable-gitmoji-config-parser'
 
 export default async (config: GitmojiConfig, title: string) => {
   try {

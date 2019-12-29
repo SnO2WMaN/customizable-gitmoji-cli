@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import chalk from 'chalk'
 
-import { GitmojiConfig } from 'cz-gitmoji-config-parser'
+import { GitmojiConfig } from 'customizable-gitmoji-config-parser'
 
 export default async function(config: GitmojiConfig) {
   const list = config.list()
