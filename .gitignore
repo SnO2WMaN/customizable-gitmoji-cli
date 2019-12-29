@@ -6,6 +6,8 @@ lib/
 coverage/
 
 .env
+.envrc
+
 *.log
 *.cache
 
