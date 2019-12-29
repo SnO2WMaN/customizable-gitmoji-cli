@@ -1623,10 +1623,12 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-cz-gitmoji-config-parser@^0.0.1-9:
-  version "0.0.1-9"
-  resolved "https://registry.yarnpkg.com/cz-gitmoji-config-parser/-/cz-gitmoji-config-parser-0.0.1-9.tgz#c7caf9fbb4efa2e27c816a324b47eee4a66d96da"
-  integrity sha512-KDnn12j04RIXsPpHe3zNscmza7m9XPVJ+zTudTm4FSIqDGESAM1oWcHrYNv4VbLw3MNqhHooFRmhfk+n0QtbbA==
+customizable-gitmoji-config-parser@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/customizable-gitmoji-config-parser/-/customizable-gitmoji-config-parser-0.0.1.tgz#abfa8346d80aa7fefa1b27d5a92e69002022c34b"
+  integrity sha512-o5LyHAbZdsSgjdwgUo/Vue4CIvv/mA+t6sgCmtIRrhammnxZgCXey0viEJdOrocYMXuskusdt6TrO5GA/Y4H7w==
+  dependencies:
+    shareable-namings-resolver "^0.0.1"
 
 dashdash@^1.12.0:
   version "1.14.1"
@@ -5412,6 +5414,11 @@ set-value@^2.0.0, set-value@^2.0.1:
     is-extendable "^0.1.1"
     is-plain-object "^2.0.3"
     split-string "^3.0.1"
+
+shareable-namings-resolver@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/shareable-namings-resolver/-/shareable-namings-resolver-0.0.1.tgz#b6f0e55374f83350325b4b23b713afeff579f826"
+  integrity sha512-zVXUWmJTkZLVSYe5KRTzAe4UXIBF2AgsfW8DNmHqPcokg5c91+WdadDbQJGPPvIVZFgymCNL0+ZLPMWBEoo/8w==
 
 shebang-command@^1.2.0:
   version "1.2.0"
