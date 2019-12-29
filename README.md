@@ -1,4 +1,4 @@
-<h2 align="center">cz-gitmoji-cli</h2>
+<h2 align="center">customizable-gitmoji-cli</h2>
 
 <p align="center">Customizable <a href="https://github.com/carloscuesta/gitmoji-cli">gitmoji-cli</a>.</p>
 
