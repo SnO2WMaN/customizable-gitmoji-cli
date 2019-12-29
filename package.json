@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/SnO2WMaN/customizable-gitmoji-cli/issues"
   },
-  "version": "2.0.0-2",
+  "version": "2.0.0-3",
   "bin": {
     "cz-gitmoji": "lib/index.js"
   },
